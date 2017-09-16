@@ -18,40 +18,35 @@
 ; ENAB 1->0	Instruction/Data acquire	
 	MOV 	TMOD, #00000001B		; MODE 1 FOR TIMER 0: 16 BITS COUNTER
 
-	LCALL 	DELAY_30
-	LCALL 	INIT
-	LCALL	CLEAR
+	LCALL 	DELAY_30		; Delay inivial de 30 ms
+	LCALL 	INIT			; Inicializa o display
+	LCALL	CLEAR			; Zera o display
 
+	
+	
 	MOV 	A, #06H
-	LCALL	POS
-	MOV	A, #'M'
-	LCALL 	WRITE
-	MOV	A, #'O'
-	LCALL 	WRITE
-	MOV	A, #'D'
-	LCALL 	WRITE
-	MOV	A, #'O'
-	LCALL 	WRITE
-	MOV	A, #44H
-	LCALL 	POS
-	MOV	A, #'4'
-	LCALL 	WRITE
-	MOV	A, #20H
-	LCALL 	WRITE
-	MOV	A, #'B'
-	LCALL 	WRITE
-	MOV	A, #'I'
-	LCALL 	WRITE
-	MOV	A, #'T'
-	LCALL 	WRITE
-	MOV	A, #'S'
+	LCALL	POS			; Move o cursor para a posição desejada
 
+	MOV	DPTR, #FRASE
+
+	LCALL	WRITE_FRASE		; Escreve a sequencia de caracteres q esta em #FRASE
+	MOV	A, #44H			; Muda o cursor de posição
+	LCALL 	POS
+	LCALL	WRITE_FRASE		; Escreve a proxima sequencia de caracters
 	SJMP 	$
 
 
+WRITE_FRASE:	MOV	A, #00H
+	MOVC	A, @A+DPTR
+	INC	DPTR			; Incrementa o DPTR para a próxima iteração
+	CJNE	A, '$', LOOP2		; Chama a função WRITE até encontrar o caractere $
+	SJMP	STOP
+LOOP2:	LCALL 	WRITE
+	SJMP	WRITE_FRASE
+STOP:	RET
 
 
-CONV:	MOV 	R6, A
+CONV:	MOV 	R6, A			; Junta o nibble de configuração, para a escrita, com o nibble de dados 
 	ANL	A, #0F0H
 	ANL	BUS, #0FH
 	ORL	A, BUS
@@ -59,14 +54,14 @@ CONV:	MOV 	R6, A
 	MOV	A, R6
 	RET
 
-SEND:	SETB 	ENAB
+SEND:	SETB 	ENAB			; Envia o dado para o LCD
 	LCALL	CONV
 	CLR	ENAB
 	LCALL	WAIT
 	RET
 	
-WRITE:	CLR	RW
-	SETB 	ENAB
+WRITE:	CLR	RW			; Configura a escrita e envia o caractere a 
+	SETB 	ENAB			; ser escrito no LCD
 	SETB 	RS
 	
 	LCALL	SEND
@@ -75,21 +70,21 @@ WRITE:	CLR	RW
 	
 	RET
 
-CLEAR:	CLR	RW
+CLEAR:	CLR	RW		
 	SETB 	ENAB
 	CLR 	RS
 
-	MOV 	A, #01H
-	LCALL 	SEND
+	MOV 	A, #01H			; Este comando apaga todo o display do LCD
+	LCALL 	SEND			; E coloca o cursor no início
 	SWAP 	A
 	LCALL	SEND
 	RET
 	
-POS:	CLR	RW
+POS:	CLR	RW			
 	SETB 	ENAB
 	CLR 	RS
-	ADD 	A, #80H
-	LCALL 	SEND
+	ADD 	A, #80H			; Esse comando faz com que o cursor seja movido
+	LCALL 	SEND			; para a posição #A
 	SWAP 	A
 	LCALL 	SEND
 	RET
@@ -98,44 +93,40 @@ INIT:	CLR	RW
 	SETB 	ENAB
 	CLR 	RS
 
-	MOV	A, #28H
+	MOV	A, #28H			; Configura para o modo 4 bits
 	LCALL 	SEND
 	SWAP 	A
 	LCALL 	SEND
 	
 	SETB 	ENAB
 	CLR 	RS
-	MOV	A, #0EH
+	MOV	A, #0EH			; Liga o display e o cursor
 	LCALL	SEND
 	SWAP 	A
 	LCALL 	SEND
 
 	CLR 	RS
-	MOV	A, #06H
+	MOV	A, #06H			; Configura o cursor andar para a direita
 	LCALL	SEND
 	SWAP 	A
 	LCALL	SEND
 	RET
 
 WAIT:	SJMP DELAY
-;
-;DELAY:	MOV 	R2, #10D		; 2.53MS DELAY
-;DELAY2:	MOV	R1, #10D			;
-;DELAY1:	MOV 	R0, #10D			;((((R0*2)+3)*R1+3)*R2+3)*12/(f)
-;	DJNZ	R0, $
-;	DJNZ	R1, DELAY1
-;	DJNZ 	R2, DELAY2
-;			
-;	RET
+
 DELAY:	MOV	TH0, #6CH		; this is for the number of cycles for th1 interrupt
-	MOV	TL0, #00H
+	MOV	TL0, #00H		; Delay de 2.5ms
 	SETB	TR0
 	JNB	TF0, $
 	CLR	TF0
 	CLR 	TR0
 	RET
 
-DELAY_30:	MOV	R5, #08H
+DELAY_30:	MOV	R5, #08H	; delay de 20ms
 LOOP_30:	LCALL 	WAIT
 		DJNZ	R5, LOOP_30
+		
+FRASE:	DB	'MODO', '$','4 BITS','$'
+
 	END
+

@@ -1,6 +1,5 @@
 ; 			HEADER					;
 ;			LCD 8 BITS MODE				;
-
 	BUS1	EQU	P0
 	BUS2	EQU	P2
 	ENAB	EQU	P0.2
@@ -11,28 +10,48 @@
 ; RS 0/1	Instruction/Data
 ; RW 0/1	Write/Read
 ; ENAB 1->0	Instruction/Data acquire	
-	MOV 	TMOD, #00000001B		; MODE 1 FOR TIMER 0: 16 BITS COUNTER
 
-	LCALL 	DELAY_30		; Delay inivial de 30 ms
-	LCALL 	INIT			; Inicializa o display
-	LCALL	CLEAR			; Zera o display
+	ORG 	0
+	SJMP 	MAIN
 
+	ORG 	23H
+	SJMP 	SERIAL
 
-	MOV 	DPTR, #DATA1
-	LCALL	WRITE_TEXT
-	MOV	A, #40H
+MAIN:	MOV 	SCON, #01010000B 	; Serial Mode 1 + Receiver Enable 
+	MOV 	TMOD, #00100001B 	; Timer 1 Mode 2 (auto reload), Timer 0 Mode 1
+	MOV 	TH1,  #253D      	; Baud Rate 9600
+	MOV 	IE,   #10010000B 	; Enable SERIAL interrupt
+	SETB 	TR1
+
+	LCALL DELAY_30
+	
+PROG:	LCALL 	INIT
+	LCALL	CLEAR			; Configuring the lcd
+	MOV	R7, #00H		; R7 is the character counter
+LOOP1:	CJNE	R7, #0FH, LOOP1		; Writes 15 characters
+	CLR	ES			
+	MOV	A, #40H			; Jump to 2 line
 	LCALL	POS
-	MOV	DPTR, #DATA2
-	LCALL	WRITE_TEXT
-	SJMP 	$
+	SETB 	ES			
+LOOP2:	CJNE	R7, #1EH, LOOP2		; Writes 15 more characters
+	SJMP 	PROG	
 
-SEND:	SETB 	ENAB			; Envia o caracter a ser escrito
+
+SERIAL:	CLR ES
+	CLR RI
+	MOV A, SBUF
+	LCALL WRITE
+	INC R7
+	SETB ES
+	RETI
+
+SEND:	SETB 	ENAB
 	LCALL	CONV
 	CLR	ENAB
 	LCALL	WAIT
 	RET
 
-CONV:	MOV 	R6, A			; Junta o nibble de configuração, para a escrita, com o nibble de dados
+CONV:	MOV 	R6, A
 	ANL 	A, #0F0H
 	ANL 	BUS1, #0FH
 	ORL 	BUS1, A
@@ -43,7 +62,6 @@ CONV:	MOV 	R6, A			; Junta o nibble de configuração, para a escrita, com o nib
 	RET
 
 WRITE:	CLR	RW
-	SETB 	ENAB
 	SETB 	RS
 	LCALL 	SEND
 	RET
@@ -71,7 +89,7 @@ INIT:	CLR	RW
 	SETB 	ENAB
 	CLR 	RS
 
-	MOV	A, #28H			; Configura para o modo 8 bits, 2 linhas
+	MOV	A, #28H			; Configura para o modo 4 bits
 	LCALL 	SEND
 	SWAP 	A
 	LCALL 	SEND
@@ -112,7 +130,7 @@ WAIT:	SJMP DELAY
 ;	DJNZ 	R2, DELAY2
 ;			
 ;	RET
-DELAY:	MOV	TH0, #6CH		; this is for the number of cycles for th1 interrupt
+DELAY:	MOV	TH0, #06CH		; this is for the number of cycles for th1 interrupt
 	MOV	TL0, #00H
 	SETB	TR0
 	JNB	TF0, $
@@ -124,8 +142,7 @@ DELAY_30:	MOV	R5, #08H
 LOOP_30:	LCALL 	WAIT
 		DJNZ	R5, LOOP_30
 
-DATA1:	DB 'Shirley','$'
-DATA2:	DB 'Thiaguinho','$'
 
 	END
+
 

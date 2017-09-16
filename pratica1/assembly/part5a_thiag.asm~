@@ -1,12 +1,17 @@
 ; 			HEADER					;
-;			LCD 8 BITS MODE				;
-
-	BUS1	EQU	P0
-	BUS2	EQU	P2
+;			LCD 4 BITS MODE				;
+	DB0	EQU	P1.0
+	DB1	EQU	P1.1
+	DB2	EQU	P1.2
+	DB3	EQU	P1.3
+	DB4	EQU	P1.4
+	DB5	EQU	P1.5
+	DB6	EQU	P1.6
+	DB7	EQU	P1.7
+	BUS	EQU	P0
 	ENAB	EQU	P0.2
 	RW	EQU	P0.1
 	RS	EQU	P0.0
-
 
 ; RS 0/1	Instruction/Data
 ; RW 0/1	Write/Read
@@ -17,35 +22,52 @@
 	LCALL 	INIT			; Inicializa o display
 	LCALL	CLEAR			; Zera o display
 
+	
+	
+	MOV 	A, #06H
+	LCALL	POS			; Move o cursor para a posição desejada
 
-	MOV 	DPTR, #DATA1
-	LCALL	WRITE_TEXT
-	MOV	A, #40H
-	LCALL	POS
-	MOV	DPTR, #DATA2
-	LCALL	WRITE_TEXT
+	MOV	DPTR, #FRASE
+
+	LCALL	WRITE_FRASE		; Escreve a sequencia de caracteres q esta em #FRASE
+	MOV	A, #44H			; Muda o cursor de posição
+	LCALL 	POS
+	LCALL	WRITE_FRASE		; Escreve a proxima sequencia de caracters
 	SJMP 	$
 
-SEND:	SETB 	ENAB			; Envia o caracter a ser escrito
+
+WRITE_FRASE:	MOV	A, #00H
+	MOVC	A, @A+DPTR
+	INC	DPTR
+	CJNE	A, '$', LOOP2		; Chama a função WRITE até encontrar o caractere $
+	SJMP	STOP
+LOOP2:	LCALL 	WRITE
+	SJMP	WRITE_FRASE
+STOP:	RET
+
+
+CONV:	MOV 	R6, A			; Junta o nibble de configuração, para a escrita, com o nibble de dados 
+	ANL	A, #0F0H
+	ANL	BUS, #0FH
+	ORL	A, BUS
+	MOV	BUS, A
+	MOV	A, R6
+	RET
+
+SEND:	SETB 	ENAB			; Envia o dado para o LCD
 	LCALL	CONV
 	CLR	ENAB
 	LCALL	WAIT
 	RET
-
-CONV:	MOV 	R6, A			; Junta o nibble de configuração, para a escrita, com o nibble de dados
-	ANL 	A, #0F0H
-	ANL 	BUS1, #0FH
-	ORL 	BUS1, A
-	MOV	A, R6
-	ANL 	A, #0FH
-	MOV	BUS2, A
-	MOV 	A, R6
-	RET
-
-WRITE:	CLR	RW
-	SETB 	ENAB
+	
+WRITE:	CLR	RW			; Configura a escrita e envia o caractere a 
+	SETB 	ENAB			; ser escrito no LCD
 	SETB 	RS
-	LCALL 	SEND
+	
+	LCALL	SEND
+	SWAP	A
+	LCALL	SEND
+	
 	RET
 
 CLEAR:	CLR	RW		
@@ -71,7 +93,7 @@ INIT:	CLR	RW
 	SETB 	ENAB
 	CLR 	RS
 
-	MOV	A, #28H			; Configura para o modo 8 bits, 2 linhas
+	MOV	A, #28H			; Configura para o modo 4 bits
 	LCALL 	SEND
 	SWAP 	A
 	LCALL 	SEND
@@ -90,42 +112,21 @@ INIT:	CLR	RW
 	LCALL	SEND
 	RET
 
-WRITE_TEXT:
-LOOP:	MOV	A, #00h
-	MOVC	A, @A+DPTR
-	CJNE	A, #'$', GO
-	SJMP	PEND
-GO:	INC	DPTR
-	LCALL 	SEND	
-	SJMP	LOOP
-
-PEND:	RET			
-
-
 WAIT:	SJMP DELAY
-;
-;DELAY:	MOV 	R2, #10D		; 2.53MS DELAY
-;DELAY2:	MOV	R1, #10D			;
-;DELAY1:	MOV 	R0, #10D			;((((R0*2)+3)*R1+3)*R2+3)*12/(f)
-;	DJNZ	R0, $
-;	DJNZ	R1, DELAY1
-;	DJNZ 	R2, DELAY2
-;			
-;	RET
+
 DELAY:	MOV	TH0, #6CH		; this is for the number of cycles for th1 interrupt
-	MOV	TL0, #00H
+	MOV	TL0, #00H		; Delay de 2.5ms
 	SETB	TR0
 	JNB	TF0, $
 	CLR	TF0
 	CLR 	TR0
 	RET
 
-DELAY_30:	MOV	R5, #08H
+DELAY_30:	MOV	R5, #08H	; delay de 20ms
 LOOP_30:	LCALL 	WAIT
 		DJNZ	R5, LOOP_30
-
-DATA1:	DB 'Shirley','$'
-DATA2:	DB 'Thiaguinho','$'
+		
+FRASE:	DB	'MODO', '$','4 BITS','$'
 
 	END
 

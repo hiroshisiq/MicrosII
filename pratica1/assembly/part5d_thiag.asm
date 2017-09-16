@@ -23,7 +23,7 @@ MAIN:	MOV 	SCON, #01010000B 	; Serial Mode 1 + Receiver Enable
 	MOV 	IE,   #10010000B 	; Enable SERIAL interrupt
 	SETB 	TR1
 
-	LCALL DELAY_30
+	LCALL DELAY_30			; initial delay
 	
 PROG:	LCALL 	INIT
 	LCALL	CLEAR			; Configuring the lcd
@@ -45,13 +45,13 @@ SERIAL:	CLR ES
 	SETB ES
 	RETI
 
-SEND:	SETB 	ENAB
+SEND:	SETB 	ENAB		; Envia o caracter a ser escrito
 	LCALL	CONV
 	CLR	ENAB
 	LCALL	WAIT
 	RET
 
-CONV:	MOV 	R6, A
+CONV:	MOV 	R6, A		; Junta o nibble de configuração, para a escrita, com o nibble de dados
 	ANL 	A, #0F0H
 	ANL 	BUS1, #0FH
 	ORL 	BUS1, A
@@ -61,37 +61,51 @@ CONV:	MOV 	R6, A
 	MOV 	A, R6
 	RET
 
-WRITE:	CLR	RW
+WRITE:	CLR	RW		; Configura o LCD para escrita
 	SETB 	RS
 	LCALL 	SEND
 	RET
 
-CLEAR:	CLR	RW
+CLEAR:	CLR	RW		
 	SETB 	ENAB
 	CLR 	RS
-	MOV 	A, #01H
-	LCALL 	SEND
+
+	MOV 	A, #01H			; Este comando apaga todo o display do LCD
+	LCALL 	SEND			; E coloca o cursor no início
+	SWAP 	A
+	LCALL	SEND
 	RET
 	
-POS:	CLR	RW
+POS:	CLR	RW			
 	SETB 	ENAB
 	CLR 	RS
-	ADD 	A, #80H
+	ADD 	A, #80H			; Esse comando faz com que o cursor seja movido
+	LCALL 	SEND			; para a posição #A
+	SWAP 	A
 	LCALL 	SEND
 	RET
 	
 INIT:	CLR	RW
 	SETB 	ENAB
 	CLR 	RS
-	MOV	P0, #00H			; 2 line mode, 8 bits
+
+	MOV	A, #28H			; Configura para o modo 4 bits
+	LCALL 	SEND
+	SWAP 	A
+	LCALL 	SEND
+	
+	SETB 	ENAB
+	CLR 	RS
+	MOV	A, #0EH			; Liga o display e o cursor
+	LCALL	SEND
+	SWAP 	A
+	LCALL 	SEND
 
 	CLR 	RS
-	MOV	A, #0EH			; turn lcd and cursor on
-	LCALL 	SEND
-	
-	MOV	A, #06H			; cursor increments to the right
-	LCALL 	SEND
-	
+	MOV	A, #06H			; Configura o cursor andar para a direita
+	LCALL	SEND
+	SWAP 	A
+	LCALL	SEND
 	RET
 
 WRITE_TEXT:

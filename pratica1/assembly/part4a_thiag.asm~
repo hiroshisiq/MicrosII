@@ -6,7 +6,7 @@
 	ORG 0
 
 MAIN:	MOV 	LX, BX		; Lê dos botões, e escreve na mesma ordem nos LED's
-	SJMP 	MAIN		; Repete
+	SJMP 	MAIN
 	
 	END
 

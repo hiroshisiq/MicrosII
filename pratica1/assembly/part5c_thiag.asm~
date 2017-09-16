@@ -13,11 +13,10 @@
 ; ENAB 1->0	Instruction/Data acquire	
 	MOV 	TMOD, #00000001B		; MODE 1 FOR TIMER 0: 16 BITS COUNTER
 
-	LCALL 	DELAY_30		; Delay inivial de 30 ms
-	LCALL 	INIT			; Inicializa o display
-	LCALL	CLEAR			; Zera o display
-
-
+	LCALL 	DELAY_30
+	LCALL 	INIT
+	LCALL	CLEAR
+	
 	MOV 	DPTR, #DATA1
 	LCALL	WRITE_TEXT
 	MOV	A, #40H
@@ -26,13 +25,13 @@
 	LCALL	WRITE_TEXT
 	SJMP 	$
 
-SEND:	SETB 	ENAB			; Envia o caracter a ser escrito
+SEND:	SETB 	ENAB
 	LCALL	CONV
 	CLR	ENAB
 	LCALL	WAIT
 	RET
 
-CONV:	MOV 	R6, A			; Junta o nibble de configuração, para a escrita, com o nibble de dados
+CONV:	MOV 	R6, A
 	ANL 	A, #0F0H
 	ANL 	BUS1, #0FH
 	ORL 	BUS1, A

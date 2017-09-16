@@ -12,11 +12,11 @@
 ; ENAB 1->0	Instruction/Data acquire	
 	MOV 	TMOD, #00000001B		; MODE 1 FOR TIMER 0: 16 BITS COUNTER
 
-	LCALL 	DELAY_30		; Delay inivial de 30 ms
-	LCALL 	INIT			; Inicializa o display
-	LCALL	CLEAR			; Zera o display
+	LCALL 	DELAY_30
+	LCALL 	INIT
+	LCALL	CLEAR
 	
-	MOV 	A, #06H			; Coloca o display na posição inicial desejada
+	MOV 	A, #06H
 	LCALL	POS
 
 	MOV	DPTR, #FRASE
