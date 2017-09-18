@@ -13,6 +13,11 @@ void delay(int mstime) {
 		for(j=0; j<1275; j++);
 }
 
+void clearLCD(){
+    // clear
+    send(0x01);
+}
+
 void send(char data) {
 	// Load most significant nibble
 	P0 = (P0 & 0x0F) | (data & 0xF0);
