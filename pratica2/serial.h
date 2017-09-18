@@ -6,16 +6,11 @@
 // P2.0 P2.1 P2.2 P2.3 P2.4 P2.5 P2.6 P2.7
 // D0   D1   D2   D3   -    -    -    -   
 
-// Dalay function
+// Delay function
 void delay(int mstime) {
 	unsigned int i, j;
 	for(i=0; i<mstime; i++)
 		for(j=0; j<1275; j++);
-}
-
-void clearLCD(){
-    // clear
-    send(0x01);
 }
 
 void send(char data) {
@@ -35,7 +30,17 @@ void configure8bits() {
 	delay(20);
 	send(0x0E); // display on
 	send(0x06); // write to >>
-	send(0x01); // clear
+}
+
+void clearLCD() {
+	P0_0 = 0x00;
+	send(0x01);
+	P0_0 = 0x01;
+}
+
+void to2line() {
+	P0 = 0x00;
+	send(0xC0);
 }
 
 void write(char *txt) {
@@ -44,4 +49,4 @@ void write(char *txt) {
 		send(*txt);
 		txt++;
 	}
-} 
+}

@@ -1,4 +1,6 @@
 #include <at89x52.h>
+#include <stdio.h>
+#include <string.h>
 #include "serial.h"
 
 // P3.0 P3.1 P3.2 P3.3 P3.4 P3.5 P3.6 P3.7
@@ -20,6 +22,22 @@ void configure_timers(){
     ET0 = 1;
 }
 
+void getFrequency(){
+
+    int frequency;
+    char buf[12];    
+
+    frequency =  65536*waveCounter + 256*TH1 + TL1;
+    
+    sprintf(buf,"%d", frequency);  
+    strcat(buf, " Hz");
+
+    delay(20);
+    clearLCD();
+    delay(200);
+    write(buf);    
+}
+
 void timer0() __interrupt(1){
     // Timer
     timerCount--;
@@ -36,37 +54,18 @@ void timer0() __interrupt(1){
     }
 }
 
-
-
-
-void getFrequency(){
-
-    int frequency;
-    char buf[12];    
-
-    frequency =  65536*waveCounter + 256*TH1 + TL1;
-    
-    sprintf(buf,'%d',frequency);  
-    strcat(buf, ' Hz');
-    
-    clear();
-    write(buf);    
-}
-
 void timer1() __interrupt(3){
     // Counter
     waveCounter++;
 }
 
 int main () {
-	configure8bits();
+    configure8bits();
+    clearLCD();
     configure_timers();
-    
 
+    TR0 = 1;
+    TR1 = 1;
 
-
-
-
-
-	while(1);	// end
+    while(1);	// end
 }
