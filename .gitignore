@@ -4,3 +4,23 @@
 *.log
 *.synctex.gz
 *.toc
+
+# C
+.asm~
+.c~
+.h~
+.hex
+.hex~
+.cdb
+.cdb~
+.ihx
+.ihx~
+.lk
+.lst
+.rel
+.omf
+.map
+.rst
+.hashes
+.mem
+.sym
