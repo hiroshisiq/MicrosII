@@ -1,10 +1,10 @@
 #include <at89x52.h>
 
 // P0.0 P0.1 P0.2 P0.3 P0.4 P0.5 P0.6 P0.7
-// RS   RW   EN   -    D4   D5   D6   D7   
+// RS   RW   EN   -    D4   D5   D6   D7
 
 // P2.0 P2.1 P2.2 P2.3 P2.4 P2.5 P2.6 P2.7
-// D0   D1   D2   D3   -    -    -    -   
+// D0   D1   D2   D3   -    -    -    -
 
 // Delay function
 void delay(int mstime) {
@@ -18,8 +18,8 @@ void send(char data) {
 	P0 = (P0 & 0x0F) | (data & 0xF0);
 	// Load less significant nibble
 	P2 = data;
-	// Enable pulse 
-	P0_2 = 1;	
+	// Enable pulse
+	P0_2 = 1;
 	P0_2 = 0;
 	// Wait LCD
 	delay(2);
