@@ -1,0 +1,1029 @@
+ASxxxx Linker V03.00 + NoICE + sdld,  page 1.
+Hexadecimal  [32-Bits]
+
+Area                                    Addr        Size        Decimal Bytes (Attributes)
+--------------------------------        ----        ----        ------- ----- ------------
+CABS                                00000000    00000000 =           0. bytes (ABS,CON,CODE)
+
+      Value  Global                              Global Defined In Module
+      -----  --------------------------------   ------------------------
+C:   00000000  l_CABS                          
+C:   00000000  l_GSINIT1                       
+C:   00000000  l_GSINIT5                       
+C:   00000000  l_IABS                          
+C:   00000000  l_PSEG                          
+C:   00000000  l_REG_BANK_1                    
+C:   00000000  l_REG_BANK_2                    
+C:   00000000  l_REG_BANK_3                    
+C:   00000000  l_RSEG                          
+C:   00000000  l_RSEG0                         
+C:   00000000  l_RSEG1                         
+C:   00000000  l_XABS                          
+C:   00000000  l_XINIT                         
+C:   00000000  l_XISEG                         
+C:   00000000  l_XSEG                          
+C:   00000000  l__CODE                         
+C:   00000000  s_BSEG                          
+C:   00000000  s_CABS                          
+C:   00000000  s_DSEG                          
+C:   00000000  s_HOME                          
+C:   00000000  s_IABS                          
+C:   00000000  s_REG_BANK_0                    
+C:   00000000  s_RSEG                          
+C:   00000000  s_RSEG0                         
+C:   00000000  s_RSEG1                         
+C:   00000000  s_XABS                          
+C:   00000001  l_BIT_BANK                      
+C:   00000001  s_PSEG                          
+C:   00000001  s_XISEG                         
+C:   00000001  s_XSEG                          
+C:   00000002  l_BSEG_BYTES                    
+C:   00000003  l_GSFINAL                       
+C:   00000003  l_GSINIT0                       
+C:   00000006  l_ISEG                          
+C:   00000006  l_OSEG                          
+C:   00000008  l_REG_BANK_0                    
+C:   00000008  s_REG_BANK_1                    
+C:   0000000A  l_BSEG                          
+C:   0000000A  l_GSINIT2                       
+C:   0000000E  l_GSINIT                        
+C:   00000010  s_REG_BANK_2                    
+C:   00000012  l_CONST                         
+C:   00000018  s_REG_BANK_3                    
+C:   00000020  s_BSEG_BYTES                    
+C:   00000020  s__CODE                         
+C:   00000021  l_HOME                          
+C:   00000021  s_GSINIT0                       
+C:   00000022  l_GSINIT3                       
+C:   00000022  s_BIT_BANK                      
+C:   00000024  s_GSINIT1                       
+ASxxxx Linker V03.00 + NoICE + sdld,  page 2.
+Hexadecimal  [32-Bits]
+
+Area                                    Addr        Size        Decimal Bytes (Attributes)
+--------------------------------        ----        ----        ------- ----- ------------
+CABS                                00000000    00000000 =           0. bytes (ABS,CON,CODE)
+
+      Value  Global                              Global Defined In Module
+      -----  --------------------------------   ------------------------
+C:   00000024  s_GSINIT2                       
+C:   0000002A  l_GSINIT4                       
+C:   0000002E  s_GSINIT3                       
+C:   00000044  s_OSEG                          
+C:   0000004A  s_ISEG                          
+C:   00000050  s_GSINIT4                       
+C:   00000050  s_SSEG                          
+C:   0000007A  s_GSINIT                        
+C:   0000007A  s_GSINIT5                       
+C:   0000007B  l_DSEG                          
+C:   00000088  s_GSFINAL                       
+C:   0000008B  s_CSEG                          
+C:   000000B0  l_SSEG                          
+C:   00000100  l_IRAM                          
+C:   00000925  l_CSEG                          
+C:   000009B0  s_CONST                         
+C:   000009C2  s_XINIT                         
+
+ASxxxx Linker V03.00 + NoICE + sdld,  page 3.
+Hexadecimal  [32-Bits]
+
+Area                                    Addr        Size        Decimal Bytes (Attributes)
+--------------------------------        ----        ----        ------- ----- ------------
+.  .ABS.                            00000000    00000000 =           0. bytes (ABS,CON)
+
+      Value  Global                              Global Defined In Module
+      -----  --------------------------------   ------------------------
+     00000000  .__.ABS.                           _startup
+     00000080  G$P0$0$0                           freq
+     00000080  G$P0_0$0$0                         freq
+     00000080  _P0                                freq
+     00000080  _P0_0                              freq
+     00000081  G$P0_1$0$0                         freq
+     00000081  G$SP$0$0                           freq
+     00000081  _P0_1                              freq
+     00000081  _SP                                freq
+     00000082  G$DPL$0$0                          freq
+     00000082  G$P0_2$0$0                         freq
+     00000082  _DPL                               freq
+     00000082  _P0_2                              freq
+     00000083  G$DPH$0$0                          freq
+     00000083  G$P0_3$0$0                         freq
+     00000083  _DPH                               freq
+     00000083  _P0_3                              freq
+     00000084  G$P0_4$0$0                         freq
+     00000084  _P0_4                              freq
+     00000085  G$P0_5$0$0                         freq
+     00000085  _P0_5                              freq
+     00000086  G$P0_6$0$0                         freq
+     00000086  _P0_6                              freq
+     00000087  G$P0_7$0$0                         freq
+     00000087  G$PCON$0$0                         freq
+     00000087  _P0_7                              freq
+     00000087  _PCON                              freq
+     00000088  G$IT0$0$0                          freq
+     00000088  G$TCON$0$0                         freq
+     00000088  _IT0                               freq
+     00000088  _TCON                              freq
+     00000089  G$IE0$0$0                          freq
+     00000089  G$TMOD$0$0                         freq
+     00000089  _IE0                               freq
+     00000089  _TMOD                              freq
+     0000008A  G$IT1$0$0                          freq
+     0000008A  G$TL0$0$0                          freq
+     0000008A  _IT1                               freq
+     0000008A  _TL0                               freq
+     0000008B  G$IE1$0$0                          freq
+     0000008B  G$TL1$0$0                          freq
+     0000008B  _IE1                               freq
+     0000008B  _TL1                               freq
+     0000008C  G$TH0$0$0                          freq
+     0000008C  G$TR0$0$0                          freq
+     0000008C  _TH0                               freq
+     0000008C  _TR0                               freq
+     0000008D  G$TF0$0$0                          freq
+     0000008D  G$TH1$0$0                          freq
+     0000008D  _TF0                               freq
+ASxxxx Linker V03.00 + NoICE + sdld,  page 4.
+Hexadecimal  [32-Bits]
+
+Area                                    Addr        Size        Decimal Bytes (Attributes)
+--------------------------------        ----        ----        ------- ----- ------------
+.  .ABS.                            00000000    00000000 =           0. bytes (ABS,CON)
+
+      Value  Global                              Global Defined In Module
+      -----  --------------------------------   ------------------------
+     0000008D  _TH1                               freq
+     0000008E  G$TR1$0$0                          freq
+     0000008E  _TR1                               freq
+     0000008F  G$TF1$0$0                          freq
+     0000008F  _TF1                               freq
+     00000090  G$P1$0$0                           freq
+     00000090  G$P1_0$0$0                         freq
+     00000090  G$T2$0$0                           freq
+     00000090  _P1                                freq
+     00000090  _P1_0                              freq
+     00000090  _T2                                freq
+     00000091  G$P1_1$0$0                         freq
+     00000091  G$T2EX$0$0                         freq
+     00000091  _P1_1                              freq
+     00000091  _T2EX                              freq
+     00000092  G$P1_2$0$0                         freq
+     00000092  _P1_2                              freq
+     00000093  G$P1_3$0$0                         freq
+     00000093  _P1_3                              freq
+     00000094  G$P1_4$0$0                         freq
+     00000094  _P1_4                              freq
+     00000095  G$P1_5$0$0                         freq
+     00000095  _P1_5                              freq
+     00000096  G$P1_6$0$0                         freq
+     00000096  _P1_6                              freq
+     00000097  G$P1_7$0$0                         freq
+     00000097  _P1_7                              freq
+     00000098  G$RI$0$0                           freq
+     00000098  G$SCON$0$0                         freq
+     00000098  _RI                                freq
+     00000098  _SCON                              freq
+     00000099  G$SBUF$0$0                         freq
+     00000099  G$TI$0$0                           freq
+     00000099  _SBUF                              freq
+     00000099  _TI                                freq
+     0000009A  G$RB8$0$0                          freq
+     0000009A  _RB8                               freq
+     0000009B  G$TB8$0$0                          freq
+     0000009B  _TB8                               freq
+     0000009C  G$REN$0$0                          freq
+     0000009C  _REN                               freq
+     0000009D  G$SM2$0$0                          freq
+     0000009D  _SM2                               freq
+     0000009E  G$SM1$0$0                          freq
+     0000009E  _SM1                               freq
+     0000009F  G$SM0$0$0                          freq
+     0000009F  _SM0                               freq
+     000000A0  G$P2$0$0                           freq
+     000000A0  G$P2_0$0$0                         freq
+     000000A0  _P2                                freq
+     000000A0  _P2_0                              freq
+ASxxxx Linker V03.00 + NoICE + sdld,  page 5.
+Hexadecimal  [32-Bits]
+
+Area                                    Addr        Size        Decimal Bytes (Attributes)
+--------------------------------        ----        ----        ------- ----- ------------
+.  .ABS.                            00000000    00000000 =           0. bytes (ABS,CON)
+
+      Value  Global                              Global Defined In Module
+      -----  --------------------------------   ------------------------
+     000000A0  __XPAGE                            
+     000000A1  G$P2_1$0$0                         freq
+     000000A1  _P2_1                              freq
+     000000A2  G$P2_2$0$0                         freq
+     000000A2  _P2_2                              freq
+     000000A3  G$P2_3$0$0                         freq
+     000000A3  _P2_3                              freq
+     000000A4  G$P2_4$0$0                         freq
+     000000A4  _P2_4                              freq
+     000000A5  G$P2_5$0$0                         freq
+     000000A5  _P2_5                              freq
+     000000A6  G$P2_6$0$0                         freq
+     000000A6  _P2_6                              freq
+     000000A7  G$P2_7$0$0                         freq
+     000000A7  _P2_7                              freq
+     000000A8  G$EX0$0$0                          freq
+     000000A8  G$IE$0$0                           freq
+     000000A8  _EX0                               freq
+     000000A8  _IE                                freq
+     000000A9  G$ET0$0$0                          freq
+     000000A9  _ET0                               freq
+     000000AA  G$EX1$0$0                          freq
+     000000AA  _EX1                               freq
+     000000AB  G$ET1$0$0                          freq
+     000000AB  _ET1                               freq
+     000000AC  G$ES$0$0                           freq
+     000000AC  _ES                                freq
+     000000AD  G$ET2$0$0                          freq
+     000000AD  _ET2                               freq
+     000000AF  G$EA$0$0                           freq
+     000000AF  _EA                                freq
+     000000B0  G$P3$0$0                           freq
+     000000B0  G$P3_0$0$0                         freq
+     000000B0  G$RXD$0$0                          freq
+     000000B0  _P3                                freq
+     000000B0  _P3_0                              freq
+     000000B0  _RXD                               freq
+     000000B1  G$P3_1$0$0                         freq
+     000000B1  G$TXD$0$0                          freq
+     000000B1  _P3_1                              freq
+     000000B1  _TXD                               freq
+     000000B2  G$INT0$0$0                         freq
+     000000B2  G$P3_2$0$0                         freq
+     000000B2  _INT0                              freq
+     000000B2  _P3_2                              freq
+     000000B3  G$INT1$0$0                         freq
+     000000B3  G$P3_3$0$0                         freq
+     000000B3  _INT1                              freq
+     000000B3  _P3_3                              freq
+     000000B4  G$P3_4$0$0                         freq
+     000000B4  G$T0$0$0                           freq
+ASxxxx Linker V03.00 + NoICE + sdld,  page 6.
+Hexadecimal  [32-Bits]
+
+Area                                    Addr        Size        Decimal Bytes (Attributes)
+--------------------------------        ----        ----        ------- ----- ------------
+.  .ABS.                            00000000    00000000 =           0. bytes (ABS,CON)
+
+      Value  Global                              Global Defined In Module
+      -----  --------------------------------   ------------------------
+     000000B4  _P3_4                              freq
+     000000B4  _T0                                freq
+     000000B5  G$P3_5$0$0                         freq
+     000000B5  G$T1$0$0                           freq
+     000000B5  _P3_5                              freq
+     000000B5  _T1                                freq
+     000000B6  G$P3_6$0$0                         freq
+     000000B6  G$WR$0$0                           freq
+     000000B6  _P3_6                              freq
+     000000B6  _WR                                freq
+     000000B7  G$P3_7$0$0                         freq
+     000000B7  G$RD$0$0                           freq
+     000000B7  _P3_7                              freq
+     000000B7  _RD                                freq
+     000000B8  G$IP$0$0                           freq
+     000000B8  G$PX0$0$0                          freq
+     000000B8  _IP                                freq
+     000000B8  _PX0                               freq
+     000000B9  G$PT0$0$0                          freq
+     000000B9  _PT0                               freq
+     000000BA  G$PX1$0$0                          freq
+     000000BA  _PX1                               freq
+     000000BB  G$PT1$0$0                          freq
+     000000BB  _PT1                               freq
+     000000BC  G$PS$0$0                           freq
+     000000BC  _PS                                freq
+     000000BD  G$PT2$0$0                          freq
+     000000BD  _PT2                               freq
+     000000C8  G$CP_RL2$0$0                       freq
+     000000C8  G$T2CON$0$0                        freq
+     000000C8  G$T2CON_0$0$0                      freq
+     000000C8  _CP_RL2                            freq
+     000000C8  _T2CON                             freq
+     000000C8  _T2CON_0                           freq
+     000000C9  G$C_T2$0$0                         freq
+     000000C9  G$T2CON_1$0$0                      freq
+     000000C9  G$T2MOD$0$0                        freq
+     000000C9  _C_T2                              freq
+     000000C9  _T2CON_1                           freq
+     000000C9  _T2MOD                             freq
+     000000CA  G$RCAP2L$0$0                       freq
+     000000CA  G$T2CON_2$0$0                      freq
+     000000CA  G$TR2$0$0                          freq
+     000000CA  _RCAP2L                            freq
+     000000CA  _T2CON_2                           freq
+     000000CA  _TR2                               freq
+     000000CB  G$EXEN2$0$0                        freq
+     000000CB  G$RCAP2H$0$0                       freq
+     000000CB  G$T2CON_3$0$0                      freq
+     000000CB  _EXEN2                             freq
+     000000CB  _RCAP2H                            freq
+ASxxxx Linker V03.00 + NoICE + sdld,  page 7.
+Hexadecimal  [32-Bits]
+
+Area                                    Addr        Size        Decimal Bytes (Attributes)
+--------------------------------        ----        ----        ------- ----- ------------
+.  .ABS.                            00000000    00000000 =           0. bytes (ABS,CON)
+
+      Value  Global                              Global Defined In Module
+      -----  --------------------------------   ------------------------
+     000000CB  _T2CON_3                           freq
+     000000CC  G$T2CON_4$0$0                      freq
+     000000CC  G$TCLK$0$0                         freq
+     000000CC  G$TL2$0$0                          freq
+     000000CC  _T2CON_4                           freq
+     000000CC  _TCLK                              freq
+     000000CC  _TL2                               freq
+     000000CD  G$RCLK$0$0                         freq
+     000000CD  G$T2CON_5$0$0                      freq
+     000000CD  G$TH2$0$0                          freq
+     000000CD  _RCLK                              freq
+     000000CD  _T2CON_5                           freq
+     000000CD  _TH2                               freq
+     000000CE  G$EXF2$0$0                         freq
+     000000CE  G$T2CON_6$0$0                      freq
+     000000CE  _EXF2                              freq
+     000000CE  _T2CON_6                           freq
+     000000CF  G$T2CON_7$0$0                      freq
+     000000CF  G$TF2$0$0                          freq
+     000000CF  _T2CON_7                           freq
+     000000CF  _TF2                               freq
+     000000D0  G$P$0$0                            freq
+     000000D0  G$PSW$0$0                          freq
+     000000D0  _P                                 freq
+     000000D0  _PSW                               freq
+     000000D1  G$FL$0$0                           freq
+     000000D1  _FL                                freq
+     000000D2  G$OV$0$0                           freq
+     000000D2  _OV                                freq
+     000000D3  G$RS0$0$0                          freq
+     000000D3  _RS0                               freq
+     000000D4  G$RS1$0$0                          freq
+     000000D4  _RS1                               freq
+     000000D5  G$F0$0$0                           freq
+     000000D5  _F0                                freq
+     000000D6  G$AC$0$0                           freq
+     000000D6  _AC                                freq
+     000000D7  G$CY$0$0                           freq
+     000000D7  _CY                                freq
+     000000E0  G$A$0$0                            freq
+     000000E0  G$ACC$0$0                          freq
+     000000E0  _A                                 freq
+     000000E0  _ACC                               freq
+     000000F0  G$B$0$0                            freq
+     000000F0  _B                                 freq
+     000000F5  _B_5                               _gptrget
+     000000F6  _B_6                               _gptrget
+     000000F7  _B_7                               _gptrget
+
+ASxxxx Linker V03.00 + NoICE + sdld,  page 8.
+Hexadecimal  [32-Bits]
+
+Area                                    Addr        Size        Decimal Bytes (Attributes)
+--------------------------------        ----        ----        ------- ----- ------------
+BSEG_BYTES                          00000020    00000002 =           2. bytes (REL,CON)
+
+      Value  Global                              Global Defined In Module
+      -----  --------------------------------   ------------------------
+ASxxxx Linker V03.00 + NoICE + sdld,  page 9.
+Hexadecimal  [32-Bits]
+
+Area                                    Addr        Size        Decimal Bytes (Attributes)
+--------------------------------        ----        ----        ------- ----- ------------
+REG_BANK_0                          00000000    00000008 =           8. bytes (REL,OVR)
+
+      Value  Global                              Global Defined In Module
+      -----  --------------------------------   ------------------------
+ASxxxx Linker V03.00 + NoICE + sdld,  page 10.
+Hexadecimal  [32-Bits]
+
+Area                                    Addr        Size        Decimal Bytes (Attributes)
+--------------------------------        ----        ----        ------- ----- ------------
+BIT_BANK                            00000022    00000001 =           1. bytes (REL,OVR)
+
+      Value  Global                              Global Defined In Module
+      -----  --------------------------------   ------------------------
+ASxxxx Linker V03.00 + NoICE + sdld,  page 11.
+Hexadecimal  [32-Bits]
+
+Area                                    Addr        Size        Decimal Bytes (Attributes)
+--------------------------------        ----        ----        ------- ----- ------------
+DSEG                                00000000    0000007B =         123. bytes (REL,CON)
+
+      Value  Global                              Global Defined In Module
+      -----  --------------------------------   ------------------------
+     00000008  G$t0$0$0                           freq
+     00000008  _t0                                freq
+     0000000A  G$timerCount$0$0                   freq
+     0000000A  _timerCount                        freq
+     0000000C  G$waveCounter$0$0                  freq
+     0000000C  _waveCounter                       freq
+     0000000E  Lfreq.getFrequency$buf$1$46        freq
+     0000001A  _bp                                _bp
+     00000023  _vsprintf_PARM_2                   sprintf
+     00000026  _vsprintf_PARM_3                   sprintf
+     00000036  __print_format_PARM_2              printf_large
+     00000039  __print_format_PARM_3              printf_large
+     0000003C  __print_format_PARM_4              printf_large
+
+ASxxxx Linker V03.00 + NoICE + sdld,  page 12.
+Hexadecimal  [32-Bits]
+
+Area                                    Addr        Size        Decimal Bytes (Attributes)
+--------------------------------        ----        ----        ------- ----- ------------
+OSEG                                00000044    00000006 =           6. bytes (REL,OVR)
+
+      Value  Global                              Global Defined In Module
+      -----  --------------------------------   ------------------------
+     00000044  __gptrput_PARM_2                   _gptrput
+     00000044  _strcat_PARM_2                     _strcat
+
+ASxxxx Linker V03.00 + NoICE + sdld,  page 13.
+Hexadecimal  [32-Bits]
+
+Area                                    Addr        Size        Decimal Bytes (Attributes)
+--------------------------------        ----        ----        ------- ----- ------------
+ISEG                                0000004A    00000006 =           6. bytes (REL,CON)
+
+      Value  Global                              Global Defined In Module
+      -----  --------------------------------   ------------------------
+ASxxxx Linker V03.00 + NoICE + sdld,  page 14.
+Hexadecimal  [32-Bits]
+
+Area                                    Addr        Size        Decimal Bytes (Attributes)
+--------------------------------        ----        ----        ------- ----- ------------
+SSEG                                00000050    000000B0 =         176. bytes (REL,OVR)
+
+      Value  Global                              Global Defined In Module
+      -----  --------------------------------   ------------------------
+     00000050  __start__stack                     freq
+
+ASxxxx Linker V03.00 + NoICE + sdld,  page 15.
+Hexadecimal  [32-Bits]
+
+Area                                    Addr        Size        Decimal Bytes (Attributes)
+--------------------------------        ----        ----        ------- ----- ------------
+HOME                                00000000    00000021 =          33. bytes (REL,CON,CODE)
+
+      Value  Global                              Global Defined In Module
+      -----  --------------------------------   ------------------------
+C:   00000000  A$freq$495                         freq
+C:   00000003  A$freq$496                         freq
+C:   0000000B  A$freq$498                         freq
+C:   00000013  A$freq$500                         freq
+C:   0000001B  A$freq$502                         freq
+C:   0000001E  A$freq$538                         freq
+C:   0000001E  __sdcc_program_startup             freq
+
+ASxxxx Linker V03.00 + NoICE + sdld,  page 16.
+Hexadecimal  [32-Bits]
+
+Area                                    Addr        Size        Decimal Bytes (Attributes)
+--------------------------------        ----        ----        ------- ----- ------------
+GSINIT0                             00000021    00000003 =           3. bytes (REL,CON,CODE)
+
+      Value  Global                              Global Defined In Module
+      -----  --------------------------------   ------------------------
+C:   00000021  __sdcc_gsinit_startup              
+
+ASxxxx Linker V03.00 + NoICE + sdld,  page 17.
+Hexadecimal  [32-Bits]
+
+Area                                    Addr        Size        Decimal Bytes (Attributes)
+--------------------------------        ----        ----        ------- ----- ------------
+GSINIT2                             00000024    0000000A =          10. bytes (REL,CON,CODE)
+
+      Value  Global                              Global Defined In Module
+      -----  --------------------------------   ------------------------
+ASxxxx Linker V03.00 + NoICE + sdld,  page 18.
+Hexadecimal  [32-Bits]
+
+Area                                    Addr        Size        Decimal Bytes (Attributes)
+--------------------------------        ----        ----        ------- ----- ------------
+GSINIT3                             0000002E    00000022 =          34. bytes (REL,CON,CODE)
+
+      Value  Global                              Global Defined In Module
+      -----  --------------------------------   ------------------------
+C:   0000002E  __mcs51_genXINIT                   
+
+ASxxxx Linker V03.00 + NoICE + sdld,  page 19.
+Hexadecimal  [32-Bits]
+
+Area                                    Addr        Size        Decimal Bytes (Attributes)
+--------------------------------        ----        ----        ------- ----- ------------
+GSINIT4                             00000050    0000002A =          42. bytes (REL,CON,CODE)
+
+      Value  Global                              Global Defined In Module
+      -----  --------------------------------   ------------------------
+C:   00000050  __mcs51_genRAMCLEAR                
+C:   00000056  __mcs51_genXRAMCLEAR               
+
+ASxxxx Linker V03.00 + NoICE + sdld,  page 20.
+Hexadecimal  [32-Bits]
+
+Area                                    Addr        Size        Decimal Bytes (Attributes)
+--------------------------------        ----        ----        ------- ----- ------------
+GSINIT                              0000007A    0000000E =          14. bytes (REL,CON,CODE)
+
+      Value  Global                              Global Defined In Module
+      -----  --------------------------------   ------------------------
+C:   0000007A  A$freq$518                         freq
+C:   0000007A  C$freq.c$12$1$50                   freq
+C:   0000007B  A$freq$519                         freq
+C:   0000007D  A$freq$520                         freq
+C:   0000007F  A$freq$523                         freq
+C:   0000007F  C$freq.c$13$1$50                   freq
+C:   00000082  A$freq$525                         freq
+C:   00000084  A$freq$528                         freq
+C:   00000084  C$freq.c$14$1$50                   freq
+C:   00000086  A$freq$529                         freq
+
+ASxxxx Linker V03.00 + NoICE + sdld,  page 21.
+Hexadecimal  [32-Bits]
+
+Area                                    Addr        Size        Decimal Bytes (Attributes)
+--------------------------------        ----        ----        ------- ----- ------------
+GSFINAL                             00000088    00000003 =           3. bytes (REL,CON,CODE)
+
+      Value  Global                              Global Defined In Module
+      -----  --------------------------------   ------------------------
+C:   00000088  A$freq$531                         freq
+
+ASxxxx Linker V03.00 + NoICE + sdld,  page 22.
+Hexadecimal  [32-Bits]
+
+Area                                    Addr        Size        Decimal Bytes (Attributes)
+--------------------------------        ----        ----        ------- ----- ------------
+CSEG                                0000008B    00000925 =        2341. bytes (REL,CON,CODE)
+
+      Value  Global                              Global Defined In Module
+      -----  --------------------------------   ------------------------
+C:   0000008B  A$freq$566                         freq
+C:   0000008B  C$lcd.h$10$0$0                     freq
+C:   0000008B  G$delay$0$0                        freq
+C:   0000008B  _delay                             freq
+C:   0000008D  A$freq$567                         freq
+C:   0000008F  A$freq$570                         freq
+C:   00000091  A$freq$571                         freq
+C:   00000093  A$freq$573                         freq
+C:   00000095  A$freq$574                         freq
+C:   00000097  A$freq$575                         freq
+C:   00000098  A$freq$576                         freq
+C:   00000099  A$freq$577                         freq
+C:   0000009A  A$freq$578                         freq
+C:   0000009B  A$freq$579                         freq
+C:   0000009C  A$freq$580                         freq
+C:   0000009E  A$freq$583                         freq
+C:   0000009E  C$lcd.h$13$1$36                    freq
+C:   000000A0  A$freq$584                         freq
+C:   000000A2  A$freq$586                         freq
+C:   000000A3  A$freq$587                         freq
+C:   000000A5  A$freq$588                         freq
+C:   000000A6  A$freq$589                         freq
+C:   000000A7  A$freq$590                         freq
+C:   000000A9  A$freq$591                         freq
+C:   000000AA  A$freq$592                         freq
+C:   000000AC  A$freq$593                         freq
+C:   000000AE  A$freq$594                         freq
+C:   000000AF  A$freq$595                         freq
+C:   000000B0  A$freq$596                         freq
+C:   000000B2  A$freq$599                         freq
+C:   000000B2  C$lcd.h$12$1$36                    freq
+C:   000000B3  A$freq$600                         freq
+C:   000000B6  A$freq$601                         freq
+C:   000000B7  A$freq$602                         freq
+C:   000000B9  A$freq$606                         freq
+C:   000000B9  C$lcd.h$14$1$36                    freq
+C:   000000B9  XG$delay$0$0                       freq
+C:   000000BA  A$freq$619                         freq
+C:   000000BA  C$lcd.h$16$1$36                    freq
+C:   000000BA  G$send$0$0                         freq
+C:   000000BA  _send                              freq
+C:   000000BC  A$freq$622                         freq
+C:   000000BC  C$lcd.h$18$1$38                    freq
+C:   000000BE  A$freq$623                         freq
+C:   000000C0  A$freq$624                         freq
+C:   000000C1  A$freq$625                         freq
+C:   000000C3  A$freq$626                         freq
+C:   000000C4  A$freq$627                         freq
+C:   000000C5  A$freq$628                         freq
+C:   000000C7  A$freq$631                         freq
+ASxxxx Linker V03.00 + NoICE + sdld,  page 23.
+Hexadecimal  [32-Bits]
+
+Area                                    Addr        Size        Decimal Bytes (Attributes)
+--------------------------------        ----        ----        ------- ----- ------------
+CSEG                                0000008B    00000925 =        2341. bytes (REL,CON,CODE)
+
+      Value  Global                              Global Defined In Module
+      -----  --------------------------------   ------------------------
+C:   000000C7  C$lcd.h$20$1$38                    freq
+C:   000000C9  A$freq$634                         freq
+C:   000000C9  C$lcd.h$22$1$38                    freq
+C:   000000CB  A$freq$637                         freq
+C:   000000CB  C$lcd.h$23$1$38                    freq
+C:   000000CD  A$freq$640                         freq
+C:   000000CD  C$lcd.h$25$1$38                    freq
+C:   000000D0  A$freq$641                         freq
+C:   000000D3  A$freq$644                         freq
+C:   000000D3  C$lcd.h$26$1$38                    freq
+C:   000000D3  XG$send$0$0                        freq
+C:   000000D4  A$freq$657                         freq
+C:   000000D4  C$lcd.h$28$1$38                    freq
+C:   000000D4  C$lcd.h$29$1$39                    freq
+C:   000000D4  G$configure8bits$0$0               freq
+C:   000000D4  _configure8bits                    freq
+C:   000000D7  A$freq$660                         freq
+C:   000000D7  C$lcd.h$30$1$39                    freq
+C:   000000DA  A$freq$661                         freq
+C:   000000DD  A$freq$664                         freq
+C:   000000DD  C$lcd.h$31$1$39                    freq
+C:   000000E0  A$freq$665                         freq
+C:   000000E3  A$freq$668                         freq
+C:   000000E3  C$lcd.h$32$1$39                    freq
+C:   000000E6  A$freq$669                         freq
+C:   000000E9  A$freq$672                         freq
+C:   000000E9  C$lcd.h$33$1$39                    freq
+C:   000000E9  XG$configure8bits$0$0              freq
+C:   000000EA  A$freq$685                         freq
+C:   000000EA  C$lcd.h$35$1$39                    freq
+C:   000000EA  C$lcd.h$36$1$40                    freq
+C:   000000EA  G$clearLCD$0$0                     freq
+C:   000000EA  _clearLCD                          freq
+C:   000000EC  A$freq$688                         freq
+C:   000000EC  C$lcd.h$37$1$40                    freq
+C:   000000EF  A$freq$689                         freq
+C:   000000F2  A$freq$692                         freq
+C:   000000F2  C$lcd.h$38$1$40                    freq
+C:   000000F4  A$freq$695                         freq
+C:   000000F4  C$lcd.h$39$1$40                    freq
+C:   000000F4  XG$clearLCD$0$0                    freq
+C:   000000F5  A$freq$708                         freq
+C:   000000F5  C$lcd.h$41$1$40                    freq
+C:   000000F5  C$lcd.h$42$1$41                    freq
+C:   000000F5  G$to2line$0$0                      freq
+C:   000000F5  _to2line                           freq
+C:   000000F8  A$freq$711                         freq
+C:   000000F8  C$lcd.h$43$1$41                    freq
+C:   000000FB  A$freq$712                         freq
+C:   000000FE  A$freq$715                         freq
+C:   000000FE  C$lcd.h$44$1$41                    freq
+ASxxxx Linker V03.00 + NoICE + sdld,  page 24.
+Hexadecimal  [32-Bits]
+
+Area                                    Addr        Size        Decimal Bytes (Attributes)
+--------------------------------        ----        ----        ------- ----- ------------
+CSEG                                0000008B    00000925 =        2341. bytes (REL,CON,CODE)
+
+      Value  Global                              Global Defined In Module
+      -----  --------------------------------   ------------------------
+C:   000000FE  XG$to2line$0$0                     freq
+C:   000000FF  A$freq$728                         freq
+C:   000000FF  C$lcd.h$46$1$41                    freq
+C:   000000FF  G$write$0$0                        freq
+C:   000000FF  _write                             freq
+C:   00000101  A$freq$729                         freq
+C:   00000103  A$freq$730                         freq
+C:   00000105  A$freq$733                         freq
+C:   00000105  C$lcd.h$47$1$43                    freq
+C:   00000107  A$freq$737                         freq
+C:   00000107  C$lcd.h$48$1$43                    freq
+C:   00000109  A$freq$738                         freq
+C:   0000010B  A$freq$739                         freq
+C:   0000010D  A$freq$740                         freq
+C:   00000110  A$freq$741                         freq
+C:   00000111  A$freq$742                         freq
+C:   00000113  A$freq$745                         freq
+C:   00000113  C$lcd.h$49$2$44                    freq
+C:   00000115  A$freq$746                         freq
+C:   00000117  A$freq$747                         freq
+C:   00000119  A$freq$748                         freq
+C:   0000011B  A$freq$749                         freq
+C:   0000011E  A$freq$750                         freq
+C:   00000120  A$freq$751                         freq
+C:   00000122  A$freq$752                         freq
+C:   00000124  A$freq$755                         freq
+C:   00000124  C$lcd.h$50$2$44                    freq
+C:   00000125  A$freq$756                         freq
+C:   00000128  A$freq$757                         freq
+C:   00000129  A$freq$758                         freq
+C:   0000012B  A$freq$762                         freq
+C:   0000012B  C$lcd.h$52$1$43                    freq
+C:   0000012B  XG$write$0$0                       freq
+C:   0000012C  A$freq$775                         freq
+C:   0000012C  C$freq.c$16$1$43                   freq
+C:   0000012C  C$freq.c$20$1$45                   freq
+C:   0000012C  G$configure_timers$0$0             freq
+C:   0000012C  _configure_timers                  freq
+C:   0000012F  A$freq$778                         freq
+C:   0000012F  C$freq.c$21$1$45                   freq
+C:   00000132  A$freq$781                         freq
+C:   00000132  C$freq.c$22$1$45                   freq
+C:   00000135  A$freq$784                         freq
+C:   00000135  C$freq.c$23$1$45                   freq
+C:   00000137  A$freq$787                         freq
+C:   00000137  C$freq.c$24$1$45                   freq
+C:   00000139  A$freq$790                         freq
+C:   00000139  C$freq.c$25$1$45                   freq
+C:   0000013B  A$freq$793                         freq
+C:   0000013B  C$freq.c$26$1$45                   freq
+C:   0000013B  XG$configure_timers$0$0            freq
+ASxxxx Linker V03.00 + NoICE + sdld,  page 25.
+Hexadecimal  [32-Bits]
+
+Area                                    Addr        Size        Decimal Bytes (Attributes)
+--------------------------------        ----        ----        ------- ----- ------------
+CSEG                                0000008B    00000925 =        2341. bytes (REL,CON,CODE)
+
+      Value  Global                              Global Defined In Module
+      -----  --------------------------------   ------------------------
+C:   0000013C  A$freq$809                         freq
+C:   0000013C  C$freq.c$28$1$45                   freq
+C:   0000013C  C$freq.c$33$1$46                   freq
+C:   0000013C  G$getFrequency$0$0                 freq
+C:   0000013C  _getFrequency                      freq
+C:   0000013E  A$freq$810                         freq
+C:   00000140  A$freq$811                         freq
+C:   00000141  A$freq$812                         freq
+C:   00000142  A$freq$813                         freq
+C:   00000144  A$freq$814                         freq
+C:   00000146  A$freq$815                         freq
+C:   00000148  A$freq$816                         freq
+C:   0000014A  A$freq$817                         freq
+C:   0000014C  A$freq$818                         freq
+C:   0000014E  A$freq$819                         freq
+C:   00000150  A$freq$820                         freq
+C:   00000152  A$freq$821                         freq
+C:   00000153  A$freq$822                         freq
+C:   00000154  A$freq$823                         freq
+C:   00000155  A$freq$824                         freq
+C:   00000157  A$freq$825                         freq
+C:   00000158  A$freq$826                         freq
+C:   00000159  A$freq$827                         freq
+C:   0000015A  A$freq$828                         freq
+C:   0000015B  A$freq$829                         freq
+C:   0000015C  A$freq$830                         freq
+C:   0000015D  A$freq$831                         freq
+C:   0000015E  A$freq$832                         freq
+C:   0000015F  A$freq$833                         freq
+C:   00000160  A$freq$834                         freq
+C:   00000161  A$freq$835                         freq
+C:   00000162  A$freq$836                         freq
+C:   00000163  A$freq$837                         freq
+C:   00000164  A$freq$838                         freq
+C:   00000165  A$freq$839                         freq
+C:   00000167  A$freq$840                         freq
+C:   00000169  A$freq$841                         freq
+C:   0000016B  A$freq$842                         freq
+C:   0000016C  A$freq$843                         freq
+C:   0000016D  A$freq$844                         freq
+C:   0000016E  A$freq$845                         freq
+C:   00000170  A$freq$846                         freq
+C:   00000171  A$freq$847                         freq
+C:   00000172  A$freq$848                         freq
+C:   00000173  A$freq$849                         freq
+C:   00000174  A$freq$850                         freq
+C:   00000175  A$freq$851                         freq
+C:   00000176  A$freq$852                         freq
+C:   00000177  A$freq$853                         freq
+C:   00000178  A$freq$854                         freq
+C:   00000179  A$freq$855                         freq
+ASxxxx Linker V03.00 + NoICE + sdld,  page 26.
+Hexadecimal  [32-Bits]
+
+Area                                    Addr        Size        Decimal Bytes (Attributes)
+--------------------------------        ----        ----        ------- ----- ------------
+CSEG                                0000008B    00000925 =        2341. bytes (REL,CON,CODE)
+
+      Value  Global                              Global Defined In Module
+      -----  --------------------------------   ------------------------
+C:   0000017A  A$freq$856                         freq
+C:   0000017B  A$freq$857                         freq
+C:   0000017C  A$freq$860                         freq
+C:   0000017C  C$freq.c$35$1$46                   freq
+C:   0000017E  A$freq$861                         freq
+C:   00000180  A$freq$862                         freq
+C:   00000182  A$freq$863                         freq
+C:   00000184  A$freq$864                         freq
+C:   00000186  A$freq$865                         freq
+C:   00000188  A$freq$866                         freq
+C:   0000018A  A$freq$867                         freq
+C:   0000018C  A$freq$868                         freq
+C:   0000018E  A$freq$869                         freq
+C:   00000190  A$freq$870                         freq
+C:   00000192  A$freq$871                         freq
+C:   00000194  A$freq$872                         freq
+C:   00000196  A$freq$873                         freq
+C:   00000198  A$freq$874                         freq
+C:   0000019B  A$freq$875                         freq
+C:   0000019D  A$freq$876                         freq
+C:   0000019F  A$freq$877                         freq
+C:   000001A1  A$freq$880                         freq
+C:   000001A1  C$freq.c$36$1$46                   freq
+C:   000001A4  A$freq$881                         freq
+C:   000001A7  A$freq$882                         freq
+C:   000001AA  A$freq$883                         freq
+C:   000001AD  A$freq$884                         freq
+C:   000001B0  A$freq$885                         freq
+C:   000001B3  A$freq$888                         freq
+C:   000001B3  C$freq.c$38$1$46                   freq
+C:   000001B6  A$freq$889                         freq
+C:   000001B9  A$freq$892                         freq
+C:   000001B9  C$freq.c$39$1$46                   freq
+C:   000001BC  A$freq$895                         freq
+C:   000001BC  C$freq.c$40$1$46                   freq
+C:   000001BF  A$freq$896                         freq
+C:   000001C2  A$freq$899                         freq
+C:   000001C2  C$freq.c$41$1$46                   freq
+C:   000001C5  A$freq$900                         freq
+C:   000001C8  A$freq$901                         freq
+C:   000001CB  A$freq$904                         freq
+C:   000001CB  C$freq.c$42$1$46                   freq
+C:   000001CB  XG$getFrequency$0$0                freq
+C:   000001CC  A$freq$915                         freq
+C:   000001CC  C$freq.c$44$1$46                   freq
+C:   000001CC  G$timer0$0$0                       freq
+C:   000001CC  _timer0                            freq
+C:   000001CE  A$freq$916                         freq
+C:   000001D0  A$freq$917                         freq
+C:   000001D2  A$freq$918                         freq
+C:   000001D4  A$freq$919                         freq
+ASxxxx Linker V03.00 + NoICE + sdld,  page 27.
+Hexadecimal  [32-Bits]
+
+Area                                    Addr        Size        Decimal Bytes (Attributes)
+--------------------------------        ----        ----        ------- ----- ------------
+CSEG                                0000008B    00000925 =        2341. bytes (REL,CON,CODE)
+
+      Value  Global                              Global Defined In Module
+      -----  --------------------------------   ------------------------
+C:   000001D6  A$freq$920                         freq
+C:   000001D8  A$freq$921                         freq
+C:   000001DA  A$freq$922                         freq
+C:   000001DC  A$freq$923                         freq
+C:   000001DE  A$freq$924                         freq
+C:   000001E0  A$freq$925                         freq
+C:   000001E2  A$freq$926                         freq
+C:   000001E4  A$freq$927                         freq
+C:   000001E6  A$freq$928                         freq
+C:   000001E8  A$freq$929                         freq
+C:   000001EB  A$freq$932                         freq
+C:   000001EB  C$freq.c$46$1$47                   freq
+C:   000001ED  A$freq$933                         freq
+C:   000001EF  A$freq$934                         freq
+C:   000001F2  A$freq$935                         freq
+C:   000001F4  A$freq$939                         freq
+C:   000001F4  C$freq.c$48$1$47                   freq
+C:   000001F7  A$freq$942                         freq
+C:   000001F7  C$freq.c$49$1$47                   freq
+C:   000001FA  A$freq$945                         freq
+C:   000001FA  C$freq.c$51$1$47                   freq
+C:   000001FC  A$freq$946                         freq
+C:   000001FE  A$freq$947                         freq
+C:   00000200  A$freq$950                         freq
+C:   00000200  C$freq.c$52$2$48                   freq
+C:   00000202  A$freq$953                         freq
+C:   00000202  C$freq.c$53$2$48                   freq
+C:   00000204  A$freq$956                         freq
+C:   00000204  C$freq.c$55$2$48                   freq
+C:   00000207  A$freq$959                         freq
+C:   00000207  C$freq.c$56$2$48                   freq
+C:   0000020A  A$freq$962                         freq
+C:   0000020A  C$freq.c$58$2$48                   freq
+C:   0000020D  A$freq$963                         freq
+C:   00000210  A$freq$966                         freq
+C:   00000210  C$freq.c$59$2$48                   freq
+C:   00000212  A$freq$969                         freq
+C:   00000212  C$freq.c$60$2$48                   freq
+C:   00000214  A$freq$971                         freq
+C:   00000216  A$freq$972                         freq
+C:   00000218  A$freq$973                         freq
+C:   0000021A  A$freq$974                         freq
+C:   0000021C  A$freq$975                         freq
+C:   0000021E  A$freq$976                         freq
+C:   00000220  A$freq$977                         freq
+C:   00000222  A$freq$978                         freq
+C:   00000224  A$freq$979                         freq
+C:   00000226  A$freq$980                         freq
+C:   00000228  A$freq$981                         freq
+C:   0000022A  A$freq$982                         freq
+C:   0000022C  A$freq$983                         freq
+ASxxxx Linker V03.00 + NoICE + sdld,  page 28.
+Hexadecimal  [32-Bits]
+
+Area                                    Addr        Size        Decimal Bytes (Attributes)
+--------------------------------        ----        ----        ------- ----- ------------
+CSEG                                0000008B    00000925 =        2341. bytes (REL,CON,CODE)
+
+      Value  Global                              Global Defined In Module
+      -----  --------------------------------   ------------------------
+C:   0000022E  A$freq$984                         freq
+C:   00000230  A$freq$987                         freq
+C:   00000230  C$freq.c$63$1$47                   freq
+C:   00000230  XG$timer0$0$0                      freq
+C:   00000231  A$freq$998                         freq
+C:   00000231  C$freq.c$65$1$47                   freq
+C:   00000231  G$timer1$0$0                       freq
+C:   00000231  _timer1                            freq
+C:   00000233  A$freq$999                         freq
+C:   00000235  A$freq$1002                        freq
+C:   00000235  C$freq.c$67$1$49                   freq
+C:   00000237  A$freq$1003                        freq
+C:   00000238  A$freq$1004                        freq
+C:   0000023B  A$freq$1005                        freq
+C:   0000023D  A$freq$1007                        freq
+C:   0000023F  A$freq$1008                        freq
+C:   00000241  A$freq$1011                        freq
+C:   00000241  C$freq.c$68$1$49                   freq
+C:   00000241  XG$timer1$0$0                      freq
+C:   00000242  A$freq$1028                        freq
+C:   00000242  C$freq.c$70$1$49                   freq
+C:   00000242  C$freq.c$71$1$50                   freq
+C:   00000242  G$main$0$0                         freq
+C:   00000242  _main                              freq
+C:   00000245  A$freq$1031                        freq
+C:   00000245  C$freq.c$72$1$50                   freq
+C:   00000248  A$freq$1034                        freq
+C:   00000248  C$freq.c$73$1$50                   freq
+C:   0000024B  A$freq$1037                        freq
+C:   0000024B  C$freq.c$75$1$50                   freq
+C:   0000024D  A$freq$1040                        freq
+C:   0000024D  C$freq.c$76$1$50                   freq
+C:   0000024F  A$freq$1044                        freq
+C:   0000024F  C$freq.c$78$1$50                   freq
+C:   00000251  A$freq$1047                        freq
+C:   00000251  C$freq.c$79$1$50                   freq
+C:   00000251  XG$main$0$0                        freq
+C:   00000252  _strcat                            _strcat
+C:   000002A8  __gptrput                          _gptrput
+C:   00000333  _vsprintf                          sprintf
+C:   00000370  _sprintf                           sprintf
+C:   0000046C  __print_format                     printf_large
+C:   00000978  _strlen                            _strlen
+C:   00000990  __gptrget                          _gptrget
+C:   000009AC  __sdcc_external_startup            _startup
+
+ASxxxx Linker V03.00 + NoICE + sdld,  page 29.
+Hexadecimal  [32-Bits]
+
+Area                                    Addr        Size        Decimal Bytes (Attributes)
+--------------------------------        ----        ----        ------- ----- ------------
+CONST                               000009B0    00000012 =          18. bytes (REL,CON,CODE)
+
+      Value  Global                              Global Defined In Module
+      -----  --------------------------------   ------------------------
+C:   000009B0  Ffreq$__str_0$0$0                  freq
+C:   000009B3  Ffreq$__str_1$0$0                  freq
+
+ASxxxx Linker V03.00 + NoICE + sdld,  page 30.
+
+Files Linked                              [ module(s) ]
+
+freq.rel                                  [  ]
+
+
+Libraries Linked                          [ object file ]
+
+C:\Program Files\SDCC\bin\..\lib\small/mcs51.lib
+                                          [ crtclear.rel ]
+C:\Program Files\SDCC\bin\..\lib\small/mcs51.lib
+                                          [ crtxinit.rel ]
+C:\Program Files\SDCC\bin\..\lib\small/libsdcc.lib
+                                          [ _strcat.rel ]
+C:\Program Files\SDCC\bin\..\lib\small/libsdcc.lib
+                                          [ _gptrput.rel ]
+C:\Program Files\SDCC\bin\..\lib\small/mcs51.lib
+                                          [ crtxclear.rel ]
+C:\Program Files\SDCC\bin\..\lib\small/libsdcc.lib
+                                          [ sprintf.rel ]
+C:\Program Files\SDCC\bin\..\lib\small/libsdcc.lib
+                                          [ _bp.rel ]
+C:\Program Files\SDCC\bin\..\lib\small/libsdcc.lib
+                                          [ printf_large.rel ]
+C:\Program Files\SDCC\bin\..\lib\small/mcs51.lib
+                                          [ crtpagesfr.rel ]
+C:\Program Files\SDCC\bin\..\lib\small/libsdcc.lib
+                                          [ _strlen.rel ]
+C:\Program Files\SDCC\bin\..\lib\small/mcs51.lib
+                                          [ crtstart.rel ]
+C:\Program Files\SDCC\bin\..\lib\small/libsdcc.lib
+                                          [ _gptrget.rel ]
+C:\Program Files\SDCC\bin\..\lib\small/libsdcc.lib
+                                          [ _startup.rel ]
+
+ASxxxx Linker V03.00 + NoICE + sdld,  page 31.
+
+User Base Address Definitions
+
+HOME = 0x0000
+XSEG = 0x0001
+PSEG = 0x0001
+ISEG = 0x0000
+BSEG = 0x0000
+
+

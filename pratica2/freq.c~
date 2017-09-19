@@ -44,11 +44,8 @@ void getFrequency(){
 void timer0() __interrupt(1){
     // Timer
     timerCount--;
-
-    TH0 = high50ms;
-    TL0 = low50ms;
-
-    if(timerCount == 0){
+    P3 =0xAA;
+    if(1){
         TR0 = 0;
         TR1 = 0;
 
@@ -58,8 +55,10 @@ void timer0() __interrupt(1){
         timerCount = 20;
         TR0 = 1;
         TR1 = 1;
+        P3 = 0xBB;
     }
-
+    TH0 = high50ms;
+    TL0 = low50ms;
 }
 
 void timer1() __interrupt(3){
