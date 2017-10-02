@@ -10,7 +10,8 @@
 // D0   D1   D2   D3   D4   D5   D6   D7
 
 int t0 =   0;
-int timerCount =    20;
+int timerCount =  20;
+int timerCount0 = 20;
 int waveCounter = 0;
 
 void configure_timers(){
@@ -25,19 +26,60 @@ void configure_timers(){
     ET0 = 1;
 }
 
+void clear_counter() {
+    TH1 = 0;
+    TL1 = 0;
+    waveCounter = 0;
+}
+
 void getFrequency(){
 
     int frequency;
     char buf[12];
+    char scale[7];
 
-    frequency =  65536*waveCounter + 256*TH1 + TL1;
+    if(TL1 < 2 && TH1 == 0 && waveCounter == 0) {
+    	timerCount0 = 100; // increment 1 second 
+	clearLCD();
+    	delay(20);
+    	write("Changing to mHz");
+    	clear_counter();
+    	return;
+    } else if(timerCount0 == 100 && TL1 > 16) {
+	clearLCD();
+    	delay(20);	
+    	write("Changing to Hz");
+    	timerCount0 = 20;
+    	clear_counter();
+    	return;
+    }
 
-    sprintf(buf,"%d", frequency);
-    strcat(buf, " Hz");
 
+    
+    frequency =  TL1;
+    frequency += 256*TH1;
+    frequency += 65536*waveCounter;
+
+    
+
+    
+
+    if(timerCount0 == 100) {
+    	frequency = frequency*(1000/5);
+	strcpy (scale," mHz");
+    	
+
+    } else {
+
+	strcpy (scale," Hz");
+    }
+
+    clear_counter();
+    sprintf(buf,"%u",frequency);
+    strcat(buf, scale);
     delay(20);
     clearLCD();
-    delay(200);
+    delay(20);
     write(buf);
 }
 
@@ -55,7 +97,7 @@ void timer0() __interrupt(1){
         getFrequency();
         configure_timers();
 
-        timerCount = 20;
+        timerCount = timerCount0;
         TR0 = 1;
         TR1 = 1;
     }
