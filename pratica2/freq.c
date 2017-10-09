@@ -32,47 +32,66 @@ void clear_counter() {
     waveCounter = 0;
 }
 
+
+
 void getFrequency(){
 
     int frequency;
     char buf[12];
     char scale[7];
 
-    if(TL1 < 2 && TH1 == 0 && waveCounter == 0) {
-    	timerCount0 = 100; // increment 1 second 
+    if(TL1 < 2 && TH1 == 0 && waveCounter == 0 ) {
+    	timerCount0 = 200; // increment 1 second 
 	clearLCD();
     	delay(20);
-    	write("Changing to mHz");
+    	
+    	if(strcmp(scale," mHz")){
+		write("NO SIGNAL");
+    	}else{
+    		write("Changing to mHz");
+    		
+	}
+	
+    	strcpy (scale," mHz");
     	clear_counter();
     	return;
-    } else if(timerCount0 == 100 && TL1 > 16) {
+    } else if((timerCount0 == 200 && TL1 > 16) || (waveCounter==0 && !strcmp(scale," kHz"))) {
 	clearLCD();
     	delay(20);	
     	write("Changing to Hz");
+    	strcpy (scale," Hz");
     	timerCount0 = 20;
     	clear_counter();
     	return;
-    }
-
+    } else if(timerCount0 == 20 && waveCounter != 0 && strcmp(scale," kHz")){
+	clearLCD();
+    	delay(20);
+    	write("Changing to kHz");
+    	strcpy(scale, " kHz");
+    	clear_counter();
+    	return;
+     }
 
     
     frequency =  TL1;
     frequency += 256*TH1;
-    frequency += 65536*waveCounter;
+    frequency += 536*waveCounter;
 
     
 
-    
+    if(!strcmp(scale," mHz")) {
+    	frequency = frequency*(1000/10);
 
-    if(timerCount0 == 100) {
-    	frequency = frequency*(1000/5);
-	strcpy (scale," mHz");
+
+    } else if(!strcmp(scale," Hz")){
+	
+
+    } else if(!strcmp(scale," kHz")){
     	
+	frequency = (unsigned int) frequency/1000;
+	frequency += 65*waveCounter;
 
-    } else {
-
-	strcpy (scale," Hz");
-    }
+    } 
 
     clear_counter();
     sprintf(buf,"%u",frequency);
