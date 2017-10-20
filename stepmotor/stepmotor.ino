@@ -77,23 +77,23 @@ void turn(int numOfSteps, float period, int dir) {
   }  
 }
 
-void pullTorque(boolean pullIn) { //[TODO] Maybe write two different functions for each test aiming optimized test
+void pullTorque(boolean pullIn, int t0 = defaultPeriod, int t1 = 1000, int delta = 100) { 
   float period;
 
   // Test periods between 3000 and 1000 us
-  for(period = defaultPeriod; period >= 1000; period-=100) {
+  for(period = t0; period >= t1; period-=delta) {
     // Print the period on serial 
     Serial.println(period);
     
     // Do a full turn with the new period
-    turn(3*fullTurnSteps, period, dirState);
+    turn(2*fullTurnSteps, period, dirState);
     
     // if pull out test, change direction
     if(pullIn) changeDirectionState();    
   }  
 }
 
-void recordCommands() { // [TODO] DEGUGAR 
+void recordCommands() {  
   int i;
   char command;
   for(i=0; i<10; i++) {
@@ -104,7 +104,8 @@ void recordCommands() { // [TODO] DEGUGAR
     command = Serial.read();
 
     // If it's valid command, save on comandList
-    if(command >= '1' || command <= '8') {
+    if(command >= '1' && command <= '8') {
+      Serial.println("DEBUG");
       commandList[i] = command;
     // If command is r, stop recording
     } else if (command == 'r') {
@@ -124,7 +125,7 @@ void runCommandList() {
   }
 }
 
-void printCommandList() { // [TODO] DEBUGAR
+void printCommandList() { 
   int i = 0;
   while(commandList[i] != '\0') {
     Serial.print(i);
@@ -165,8 +166,7 @@ void printMainMenu() {
   Serial.write("q. Pull-in test.\n");
   Serial.write("w. Pull-out test.\n");
   Serial.write("e. Play commands.\n");
-  Serial.write("r. Record commands.\n");
-  
+  Serial.write("r. Record commands.\n");  
 }
 
 void evaluate(bool evalMenu, char com) {
@@ -182,35 +182,35 @@ void evaluate(bool evalMenu, char com) {
   
   switch (command) {
     case '1':
-      Serial.write("\nTurning one step to right\n\n");
+      Serial.write("Turning one step to right\n\n");
       turn(1, defaultPeriod, HIGH);
       break;
     case '2':
-      Serial.write("\nTurning half turn to right\n\n");
+      Serial.write("Turning half turn to right\n\n");
       turn(fullTurnSteps/2, defaultPeriod, HIGH);
       break;
     case '3':
-      Serial.write("\nTurning one turn to right\n\n");
+      Serial.write("Turning one turn to right\n\n");
       turn(fullTurnSteps, defaultPeriod, HIGH);
       break;
     case '4':
-      Serial.write("\nTurning five turns to right\n\n");
+      Serial.write("Turning five turns to right\n\n");
       turn(5*fullTurnSteps, defaultPeriod, HIGH);
       break;
     case '5':
-      Serial.write("\nTurning one step to left\n\n");
+      Serial.write("Turning one step to left\n\n");
       turn(1, defaultPeriod, LOW);
       break;
     case '6':
-      Serial.write("\nTurning half turn to left\n\n");
+      Serial.write("Turning half turn to left\n\n");
       turn(fullTurnSteps/2, defaultPeriod, LOW);
       break;
     case '7':
-      Serial.write("\nTurning one turn to left\n\n");
+      Serial.write("Turning one turn to left\n\n");
       turn(fullTurnSteps, defaultPeriod, LOW);
       break;
     case '8':
-      Serial.write("\nTurning five turns to left\n\n");
+      Serial.write("Turning five turns to left\n\n");
       turn(5*fullTurnSteps, defaultPeriod, LOW);
       break;
     case 'q':
