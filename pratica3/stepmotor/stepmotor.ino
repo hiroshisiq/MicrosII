@@ -6,6 +6,10 @@
   | inib |  7    |   11    |
 */
 
+/* Pull in  2.2 ms delay
+ * Pull out 1.1 ms delay
+ */
+
 // Constants
 #define defaultPeriod 3000 // us
 #define fullTurnSteps 200  // steps
@@ -263,12 +267,12 @@ void evaluate(bool evalMenu, char com) {
       break;
     case 'q':
       Serial.write("\nStarting pull-in test...\n\n");
-      pullTorque(true, 1500, 800, 50);
+      pullTorque(true, 2450, 2250, 10);
       Serial.write("\n");
       break;
     case 'w':
       Serial.write("\nStarting pull-out test...\n\n");
-      pullTorque(false, 1500, 700, 50);
+      pullTorque(false, 3000, 500, 100);
       Serial.write("\n");
       break;
     case 'e':
