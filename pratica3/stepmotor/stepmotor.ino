@@ -9,6 +9,7 @@
 // Constants
 #define defaultPeriod 3000 // us
 #define fullTurnSteps 200  // steps
+#define commandListLength 21 // (up to 10 commands)
 
 // Pins
 #define clockPin 4 
@@ -20,8 +21,8 @@ int clockState = LOW;
 int inibState  = LOW;
 int dirState   = LOW;
 
-// Command recorder (up to 10 commands)
-char commandList[11] = "3636363636";
+// Command recorder 
+char commandList[commandListLength] = "3636363636";
 
 void setup() {
   // Open serial communications and wait for port to open:
@@ -111,6 +112,34 @@ void recordCommands() {
   while(Serial.available()) command = Serial.read();
 }
 
+void appendCommands() {  
+  int i, len;
+  char command;
+
+  // Seach for the last command
+  for(len=0; len < commandListLength && commandList[len] != '\0'; len++);
+  
+  for(i=len; i<commandListLength-1; i++) {
+    // Wait for char
+    while(!Serial.available());
+
+    // Read char
+    command = Serial.read();
+
+    // If it's valid command, save on comandList
+    if(command >= '1' && command <= '8') {
+      commandList[i] = command;
+    // If command is r, stop recording
+    } else if (command == 'r') {
+      commandList[i] = '\0';
+      break;
+    }     
+  }
+
+  // Clear serial buffer
+  while(Serial.available()) command = Serial.read();
+}
+
 void runCommandList() {
   int i = 0;
   while(commandList[i] != '\0') {
@@ -160,6 +189,32 @@ void printMainMenu() {
   Serial.write("w. Pull-out test.\n");
   Serial.write("e. Play commands.\n");
   Serial.write("r. Record commands.\n");  
+}
+
+void teachInMode() {
+  Serial.write("\nStarting teach-in mode...\n");
+  Serial.write("You can record up to 10 commands using the numbers of the commands\n");
+  Serial.write("Entry \'a\' to append or \'n\' to creat new sequence\n");
+
+  while(!Serial.available());
+  char command = Serial.read();
+
+  switch(command) {
+    case 'a':    
+      Serial.write("The append will stop when it reads max commands or a \'r\' command\n");
+      Serial.write("Please entry the commands: ");
+      appendCommands();
+      break;
+    
+    case 'n':
+      Serial.write("The record will stop when it reads max commands or a \'r\' command\n");
+      Serial.write("Please entry the commands: ");
+      recordCommands();
+      break;
+  }
+  
+  Serial.write("Finished. The commands recorded are:\n\n");
+  printCommandList();
 }
 
 void evaluate(bool evalMenu, char com) {
@@ -222,13 +277,7 @@ void evaluate(bool evalMenu, char com) {
       runCommandList();
       break;
     case 'r':
-      Serial.write("\nStarting teach-in mode...\n");
-      Serial.write("You can record up to 10 commands using the numbers of the commands\n");
-      Serial.write("The record will stop when it reads 10 comands or a \'r\' command\n");
-      Serial.write("Please entry the commands: ");
-      recordCommands();
-      Serial.write("Finished. The commands recorded are:\n\n");
-      printCommandList();
+      teachInMode();
       break;
     default:
       Serial.write("404!\n");        
@@ -247,4 +296,3 @@ void mainMenu() {
 void loop() { // run over and over
     mainMenu();
 }
-
