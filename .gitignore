@@ -24,3 +24,10 @@
 *.hashes
 *.mem
 *.sym
+
+#qt
+*.pro.user
+*.o
+Makefile
+serial_gui
+.qmake.stash
