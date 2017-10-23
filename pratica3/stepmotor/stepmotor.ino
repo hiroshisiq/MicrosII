@@ -8,7 +8,7 @@
 
 // Constants
 #define defaultPeriod 3000 // us
-#define fullTurnSteps 400  // steps
+#define fullTurnSteps 200  // steps
 
 // Pins
 #define clockPin 4 
@@ -42,15 +42,9 @@ void setup() {
 }
 
 void changeClockState() {
-    // Inverte clock state
-    if (clockState == LOW) {
-      clockState = HIGH;
-    } else {
-      clockState = LOW;
-    }
-
     // Write to clock pin
-    digitalWrite(clockPin, clockState);
+    digitalWrite(clockPin, HIGH);
+    digitalWrite(clockPin, LOW);
 }
 
 void changeDirectionState() {
@@ -105,7 +99,6 @@ void recordCommands() {
 
     // If it's valid command, save on comandList
     if(command >= '1' && command <= '8') {
-      Serial.println("DEBUG");
       commandList[i] = command;
     // If command is r, stop recording
     } else if (command == 'r') {
@@ -215,12 +208,12 @@ void evaluate(bool evalMenu, char com) {
       break;
     case 'q':
       Serial.write("\nStarting pull-in test...\n\n");
-      pullTorque(true);
+      pullTorque(true, 1500, 800, 50);
       Serial.write("\n");
       break;
     case 'w':
       Serial.write("\nStarting pull-out test...\n\n");
-      pullTorque(false);
+      pullTorque(false, 1500, 700, 50);
       Serial.write("\n");
       break;
     case 'e':
