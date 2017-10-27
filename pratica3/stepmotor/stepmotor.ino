@@ -72,62 +72,107 @@ void setup() {
   digitalWrite(dirPin, dirState);   // Set direction to left
 }
 
-void firstSection()
-{
-  tone(clockPin,a, 500);  delay(500);
-  tone(clockPin,a, 500);  delay(500);
-  tone(clockPin,a, 500);  delay(500);
-  tone(clockPin,f, 350); delay(350);
-  tone(clockPin,cH, 150); delay(150);  
-  tone(clockPin,a, 500); delay(500);
-  tone(clockPin,f, 350); delay(350);
-  tone(clockPin,cH, 150); delay(150);
-  tone(clockPin,a, 650); delay(650);
-  Serial.println(a);
-  delay(500);
- 
-  tone(clockPin,eH, 500); delay(500);
-  tone(clockPin,eH, 500); delay(500);
-  tone(clockPin,eH, 500); delay(500);  
-  tone(clockPin,fH, 350); delay(350);
-  tone(clockPin,cH, 150); delay(150);
-  tone(clockPin,gS, 500); delay(500);
-  tone(clockPin,f, 350); delay(350);
-  tone(clockPin,cH, 150); delay(150);
-  tone(clockPin,a, 650); delay(650);
- 
-  delay(500);
+//void firstSection()
+//{
+//  tone(clockPin,a, 500);  delay(500);
+//  tone(clockPin,a, 500);  delay(500);
+//  tone(clockPin,a, 500);  delay(500);
+//  tone(clockPin,f, 350); delay(350);
+//  tone(clockPin,cH, 150); delay(150);  
+//  tone(clockPin,a, 500); delay(500);
+//  tone(clockPin,f, 350); delay(350);
+//  tone(clockPin,cH, 150); delay(150);
+//  tone(clockPin,a, 650); delay(650);
+//  Serial.println(a);
+//  delay(500);
+// 
+//  tone(clockPin,eH, 500); delay(500);
+//  tone(clockPin,eH, 500); delay(500);
+//  tone(clockPin,eH, 500); delay(500);  
+//  tone(clockPin,fH, 350); delay(350);
+//  tone(clockPin,cH, 150); delay(150);
+//  tone(clockPin,gS, 500); delay(500);
+//  tone(clockPin,f, 350); delay(350);
+//  tone(clockPin,cH, 150); delay(150);
+//  tone(clockPin,a, 650); delay(650);
+// 
+//  delay(500);
+//
+//}
+//
+//void secondSection()
+//{
+//  tone(clockPin,aH, 500); delay(500);
+//  tone(clockPin,a, 300); delay(300);
+//  tone(clockPin,a, 150); delay(150);
+//  tone(clockPin,aH, 500); delay(500);
+//  tone(clockPin,gSH, 325); delay(325);
+//  tone(clockPin,gH, 175); delay(175);
+//  tone(clockPin,fSH, 125); delay(125);
+//  tone(clockPin,fH, 125); delay(125);    
+//  tone(clockPin,fSH, 250); delay(250);
+// 
+//  delay(325);
+// 
+//  tone(clockPin,aS, 250); delay(250);
+//  tone(clockPin,dSH, 500); delay(500);
+//  tone(clockPin,dH, 325); delay(325);  
+//  tone(clockPin,cSH, 175); delay(175);  
+//  tone(clockPin,cH, 125); delay(125);  
+//  tone(clockPin,b, 125); delay(125);  
+//  tone(clockPin,cH, 250); delay(250);  
+// 
+//  delay(350);
+//}
 
+void playSong(int* song, int noteTime){
+//  --Vector "song" is a vector of integers. It is sequencial, first a note,
+//  then its duration (normalized), then a note, it's duration and so on.
+//  'REST' note for no note. The vector MUST end with two 0 values in order to
+//  work properly.
+//  --This function plays the note for 4/5 of its duration, then plays nothing
+//  for 1/5 of its duration (for better listening reasons).
+//  --noteTime is the unit of time, in milisseconds. For example the call
+//  "playSong(song,100);" where song[]={a,2,cH,3.5,REST,10,0.0,0.0}
+//  will play note 'a' for 160 ms, note 'cH' for 260 ms (3.5*4/5*100),then will
+//  remain silent for 1000 ms.
+
+  
+  int i;
+  int noteDuration = noteTime*4/5;
+  
+  for(i=0;song[i]!=0.0;i+=2){
+    if(song[i]==REST){
+      noTone(clockPin);
+    }else{
+      tone(clockPin,song[i],song[i+1]*noteDuration);
+    }
+    delay(song[i+1]*noteTime);
+  }
+  noTone(clockPin);
+  
 }
 
-void secondSection()
-{
-  tone(clockPin,aH, 500); delay(500);
-  tone(clockPin,a, 300); delay(300);
-  tone(clockPin,a, 150); delay(150);
-  tone(clockPin,aH, 500); delay(500);
-  tone(clockPin,gSH, 325); delay(325);
-  tone(clockPin,gH, 175); delay(175);
-  tone(clockPin,fSH, 125); delay(125);
-  tone(clockPin,fH, 125); delay(125);    
-  tone(clockPin,fSH, 250); delay(250);
- 
-  delay(325);
- 
-  tone(clockPin,aS, 250); delay(250);
-  tone(clockPin,dSH, 500); delay(500);
-  tone(clockPin,dH, 325); delay(325);  
-  tone(clockPin,cSH, 175); delay(175);  
-  tone(clockPin,cH, 125); delay(125);  
-  tone(clockPin,b, 125); delay(125);  
-  tone(clockPin,cH, 250); delay(250);  
- 
-  delay(350);
-}
+void playStarWars(){
 
+    int firstSection[]= {
+      a,10,a,10,f,7,cH,3,a,10,f,7,cH,3,a,13,REST,10,
+      eH,10,eH,10,eH,10,fH,7,cH,3,gS,10,f,7,cH,3,a,13,REST,10,
+      0.0,0.0
+    };
+
+    int secondSection[]= {
+      aH,20,a,12,a,6,aH,20,gSH,13,gH,7,fSH,5,fH,5,fSH,10,REST,13,
+      aS,10,dSH,20,dH,13,cSH,7,cH,5,b,5,cH,10,REST,10,
+      0.0,0.0
+    };
+
+    playSong(firstSection,50);
+    playSong(secondSection,25);
+}
 
 void playStillAlive(){
-  int i;
+
   int song[] = {
 
   // First line
@@ -170,15 +215,12 @@ void playStillAlive(){
   a, 0.5, a, 0.5, g, 1.0, f, 1.0, d, 0.5, c, 0.5,
   d, 0.5, f, 0.5, f, 0.5, e, 1.0, e, 0.5, fS, 0.5, fS, 1.5,
   
-  
-  
-  // and belive me…
+      // and belive me…
   REST, 2.0, a, 0.5, a, 0.5, 
   b, 0.5, a, 0.5, fS, 0.5, d, 1.0, e, 0.5, fS, 0.5, fS, 1.5,
   REST, 1.5, a, 0.5, a, 0.5, a, 0.5, 
   
-  
-  // science and im still…
+    // science and im still…
   b, 0.5, a, 0.5, fS, 0.5, d, 1.0, e, 0.5, fS, 0.5, fS, 1.5,
   
   REST, 1.5, a, 0.5, a, 0.5, a, 0.5, 
@@ -201,16 +243,13 @@ void playStillAlive(){
   0.0, 0.0
   };
 
-  for(i=0;song[i]!=0.0;i+=2){
-    if(song[i]==REST){
-      noTone(clockPin);  
-    }else{
-      tone(clockPin,song[i],song[i+1]*200);
-      delay(song[i+1]*250);
-    }
-  }
-  noTone(clockPin);
+  playSong(song,250);
+
 }
+
+
+
+
 
 void changeClockState() {
     // Write to clock pin
@@ -363,6 +402,20 @@ void printMainMenu() {
   Serial.write("r. Record commands.\n");  
   Serial.write("t. Play Star Wars theme song.\n");
   Serial.write("y. Play Still Alive.\n");
+  Serial.write("z. Continuous turning mode.\n");
+}
+
+void turnForever(){
+    char command = 'a';
+    int dir = HIGH;
+    Serial.write("Press 'x' to stop, or another key to change direction.\n");
+    while(command != 'x'){
+      while(!Serial.available()){
+        turn(1,defaultPeriod,dir);  
+      }
+      command = Serial.read();
+      changeDirectionState();
+    }
 }
 
 void teachInMode() {
@@ -454,11 +507,13 @@ void evaluate(bool evalMenu, char com) {
       teachInMode();
       break;
     case 't':
-      firstSection();
-      secondSection();
+      playStarWars();
       break;
     case 'y':
       playStillAlive();
+      break;
+    case 'z':
+      turnForever();
       break;
     default:
       Serial.write("404!\n");        
