@@ -248,9 +248,6 @@ void playStillAlive(){
 }
 
 
-
-
-
 void changeClockState() {
     // Write to clock pin
     digitalWrite(clockPin, HIGH);
@@ -406,16 +403,33 @@ void printMainMenu() {
 }
 
 void turnForever(){
+  
     char command = 'a';
     int dir = HIGH;
-    Serial.write("Press 'x' to stop, or another key to change direction.\n");
+    int clockPeriod = defaultPeriod;
+    
+    Serial.write("Press \'x\' to stop, or another key to change direction.\n");
+    Serial.write("Press \'j\' to slow-down or \'k\' to speed up (caution for speed limits).\n");
+    Serial.write("(You sure don't want a speed ticket ;) )\n");
+    
     while(command != 'x'){
       while(!Serial.available()){
-        turn(1,defaultPeriod,dir);  
+        turn(2,clockPeriod,dir);  
       }
+      
       command = Serial.read();
+      
+      switch(command){
+        case 'j':
+          clockPeriod += 50;  
+          break;
+        case 'k':
+          clockPeriod -= 50;
+          break;
+      }
       changeDirectionState();
     }
+    
 }
 
 void teachInMode() {
