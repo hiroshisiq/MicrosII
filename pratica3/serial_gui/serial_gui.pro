@@ -5,9 +5,16 @@ QT = core gui widgets serialport
 
 SOURCES += \
     main.cpp \
-    mainwindow.cpp \
-    serial.cpp
+    serial/serial.cpp \
+    gui/mainwindow.cpp \
+    gui/tabs/generaltab.cpp \
+    gui/tabs/musictab.cpp \
+    gui/tabs/teachintab.cpp \
 
 HEADERS += \
-    mainwindow.h \
-    serial.h
+    serial/serial.h \
+    gui/mainwindow.h \
+    gui/tabs/generaltab.h \
+    gui/tabs/musictab.h \
+    gui/tabs/teachintab.h \
+

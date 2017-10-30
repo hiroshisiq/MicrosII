@@ -1,5 +1,5 @@
-#include "mainwindow.h"
-#include "serial.h"
+#include <gui/mainwindow.h>
+#include <serial/serial.h>
 #include <QApplication>
 
 int main(int argc, char *argv[]) {
@@ -11,7 +11,7 @@ int main(int argc, char *argv[]) {
     // Init GUI
     MainWindow mainWindow;
 
-    mainWindow.setGeometry(QRect(0, 0, 300, 350));
+//    mainWindow.setGeometry(QRect(0, 0, 300, 400));
     mainWindow.setWindowTitle("Step Motor Controller");
     mainWindow.setSerial(serial);
 
