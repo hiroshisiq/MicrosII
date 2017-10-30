@@ -28,7 +28,5 @@
 #qt
 *.pro.user
 *.o
-*moc_*
 Makefile
-serial_gui
 .qmake.stash
