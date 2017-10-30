@@ -11,7 +11,7 @@
  */
 
 // Constants
-#define defaultPeriod 3000 // us
+#define defaultPeriod 5000 // us
 #define fullTurnSteps 200  // steps
 #define commandListLength 21 // (up to 10 commands)
 
@@ -29,7 +29,7 @@ int dirState   = LOW;
 char commandList[commandListLength] = "3636363636";
 
 // Notes
-int K=2;
+float K=0.5;
 const int c = 261/K;
 const int cS= 278/K;
 const int d = 294/K;
@@ -173,78 +173,80 @@ void playStarWars(){
 
 void playStillAlive(){
 
-  int song[] = {
+  int song1[] = {
 
   // First line
-  REST, 2.0, g, 0.5, fS, 0.5, e, 0.5, e, 0.5,
-  fS, 2.0, REST, 2.0,
+  REST, 4, g, 1, fS, 1, e, 1, e, 1,
+  fS, 4, REST, 4,
   
-  REST, 1.5, a/2, 0.5,
-  g, 0.5, fS, 0.5, e, 0.5, e, 1.0,
+  REST, 3, a/4, 1,
+  g, 1, fS, 1, e, 1, e, 4,
   
-  fS, 1.5,
-  d, 1.0, e, 0.5, a/2, 2.5,
+  fS, 3,
+  d, 4, e, 1, a/4, 5,
   
-  REST, 1.5, a/2, 0.5,
+  REST, 3, a/4, 1,
   
   // Second line
-  e, 1.0, fS, 0.5, g, 1.5, e, 0.5, cS, 1.0,
-  d, 1.5, e, 1.0, a/2, 0.5, a/2, 1.0,
-  fS, 1.5, REST, 2.0,
+  e, 4, fS, 1, g, 3, e, 1, cS, 4,
+  d, 3, e, 4, a/4, 1, a/4, 4,
+  fS, 3, REST, 4,
   
-  REST, 2.0, g, 0.5, fS, 0.5, e, 0.5, e, 0.5,
-  fS, 2.0, REST, 2.0,
+  REST, 4, g, 1, fS, 1, e, 1, e, 1,
+  fS, 4, REST, 4,
   
   // Third line
-  REST, 1.0, REST, 0.5, a/2, 0.5, g, 0.5, fS, 0.5, e, 0.5, e, 1.5,
-  fS, 0.5, d, 1.5, e, 0.5, a/2, 2.5,
-  REST, 2.0,
+  REST, 4, REST, 1, a/4, 1, g, 1, fS, 1, e, 1, e, 3,
+  fS, 1, d, 3, e, 1, a/4, 5,
+  REST, 4,
+
+  e, 4, fS, 1, g, 3, e, 1, cS, 3,
+  d, 1, e, 4, a/4, 1, d, 1, e, 1, 0 , 0};
   
-  e, 1.0, fS, 0.5, g, 1.5, e, 0.5, cS, 1.5,
-  d, 0.5, e, 1.0, a/2, 0.5, d, 0.5, e, 0.5,
-  
+  int song2[]={
   // Fourth line
-  f, 0.5, e, 0.5, d, 0.5, c, 0.5, REST, 1.0, a/2, 0.5, aS/2, 0.5,
-  c, 1.0, f, 1.0, e, 0.5, d, 0.5, d, 0.5, c, 0.5,
-  d, 0.5, c, 0.5, c, 1.0, c, 1.0, a/2, 0.5, aS/2, 0.5,
-  c, 1.0, f, 1.0, g, 0.5, f, 0.5, e, 0.5, d, 0.5,
-  d, 0.5, e, 0.5, f, 1.0, f, 1.0, g, 0.5, a, 0.5,
+  f, 1, e, 1, d, 1, c, 1, REST, 4, a/4, 1, aS/4, 1,
+  c, 4, f, 4, e, 1, d, 1, d, 1, c, 1,
+  d, 1, c, 1, c, 4, c, 4, a/4, 1, aS/4, 1,
+  c, 4, f, 4, g, 1, f, 1, e, 1, d, 1,
+  d, 1, e, 1, f, 4, f, 4, g, 1, a, 1,
   
   // Fifth line
-  aS, 0.5, aS, 0.5, a, 1.0, g, 1.0, f, 0.5, g, 0.5,
-  a, 0.5, a, 0.5, g, 1.0, f, 1.0, d, 0.5, c, 0.5,
-  d, 0.5, f, 0.5, f, 0.5, e, 1.0, e, 0.5, fS, 0.5, fS, 1.5,
+  aS, 1, aS, 1, a, 4, g, 4, f, 1, g, 1,
+  a, 1, a, 1, g, 4, f, 4, d, 1, c, 1,
+  d, 1, f, 1, f, 1, e, 4, e, 1, fS, 1, fS, 3,
   
       // and belive me…
-  REST, 2.0, a, 0.5, a, 0.5, 
-  b, 0.5, a, 0.5, fS, 0.5, d, 1.0, e, 0.5, fS, 0.5, fS, 1.5,
-  REST, 1.5, a, 0.5, a, 0.5, a, 0.5, 
+  REST, 4, a, 1, a, 1, 
+  b, 1, a, 1, fS, 1, d, 4, e, 1, fS, 1, fS, 3,
+  REST, 3, a, 1, a, 1, a, 1, 
   
     // science and im still…
-  b, 0.5, a, 0.5, fS, 0.5, d, 1.0, e, 0.5, fS, 0.5, fS, 1.5,
+  b, 1, a, 1, fS, 1, d, 4, e, 1, fS, 1, fS, 3,
   
-  REST, 1.5, a, 0.5, a, 0.5, a, 0.5, 
-  b, 0.5, a, 0.5, fS, 0.5, d, 1.0, e, 0.5, fS, 0.5, fS, 1.5,
+  REST, 3, a, 1, a, 1, a, 1, 
+  b, 1, a, 1, fS, 1, d, 4, e, 1, fS, 1, fS, 3,
   
-  REST, 2.0, a, 0.5, a, 0.5, 
-  b, 0.5, a, 0.5, fS, 0.5, d, 1.0, e, 0.5, fS, 0.5, fS, 1.5,
+  REST, 4, a, 1, a, 1, 
+  b, 1, a, 1, fS, 1, d, 4, e, 1, fS, 1, fS, 3,
   
-  REST, 1.5, a, 0.5, a, 0.5, a, 0.5, 
-  b, 0.5, a, 0.5, fS, 0.5, d, 1.0, e, 0.5, fS, 0.5, fS, 1.5,
+  REST, 3, a, 1, a, 1, a, 1, 
+  b, 1, a, 1, fS, 1, d, 4, e, 1, fS, 1, fS, 3,
   
-  REST, 1.5, a, 0.5, a, 0.5, a, 0.5, 
-  b, 0.5, a, 0.5, fS, 0.5, d, 1.0, e, 0.5, fS, 0.5, fS, 1.5,
+  REST, 3, a, 1, a, 1, a, 1, 
+  b, 1, a, 1, fS, 1, d, 4, e, 1, fS, 1, fS, 3,
   
   // still alive… still alive…
-  REST, 1.5, g, 0.5, a, 0.5, a, 1.5, 
-  REST, 1.5, g, 0.5, fS, 0.5, fS, 1.5,
+  REST, 3, g, 1, a, 1, a, 3, 
+  REST, 3, g, 1, fS, 1, fS, 3,
   
   // End of song
   0.0, 0.0
   };
 
-  playSong(song,250);
-
+  playSong(song1,160);
+  
+  playSong(song2,160);
 }
 
 
@@ -414,7 +416,7 @@ void turnForever(){
     
     while(command != 'x'){
       while(!Serial.available()){
-        turn(2,clockPeriod,dir);  
+        turn(2,clockPeriod,dirState);  
       }
       
       command = Serial.read();
@@ -426,8 +428,11 @@ void turnForever(){
         case 'k':
           clockPeriod -= 50;
           break;
+        default:
+          changeDirectionState();
       }
-      changeDirectionState();
+      
+      
     }
     
 }
@@ -524,7 +529,7 @@ void evaluate(bool evalMenu, char com) {
       playStarWars();
       break;
     case 'y':
-      playStillAlive();
+      playStillAlive();     
       break;
     case 'z':
       turnForever();
