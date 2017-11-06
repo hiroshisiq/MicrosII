@@ -1,7 +1,7 @@
 #include <SoftwareSerial.h>
 
-const int buttonPin[8] = {6, 7, 4, 5, 8, 9, 10, 11}; // Ordem errada
-
+const int buttonPin[8] = {11, 10 , 9 , 8 , 3 , 2 , 5 , 4}; // Ordem errada
+                         // 6, 7, 4, 5, 8, 9, 10, 11
 void setup() {
   // Open serial communications and wait for port to open:
   Serial.begin(9600);
@@ -27,17 +27,17 @@ int bin2dec(int * binNumber){
 }
 
 
-void tempLookUp(int code){
-
-  int table[255] = {   ,   ,   ,   ,   ,   ,   ,   ,   ,   ,   ,   ,   ,   ,   ,   ,   ,   ,   ,   ,   ,   ,   ,   ,   ,   ,   ,   ,   ,   ,   ,   ,   ,   ,   ,   ,   ,  
-//                   -17 -16 -15 -14 -13 -12 -11 -10  -9  -8  -7  -6  -5  -4  -3  -2  -1   0   1   2   3   4   5   6   7   8   9  10  11  12  13  14  15  16  17  18  19  
-                       ,   ,   ,   ,   ,   ,   ,   ,   ,   ,   ,   ,   ,   ,   ,   ,   ,   ,   ,   ,   ,   ,   ,   ,   ,   ,   ,   ,   ,   ,   ,   ,   ,   ,   ,                
-//                    20  21  22  23  24  25  26  27  28  29  30  31  32  33  34  35  36  37  38  39  40  41  42  43  44  45  46  47  48  49  50  51  52  53  54  55
-  }
-
-  return table[code];
-  
-}
+//void tempLookUp(int code){
+//
+//  int table[255] = {   ,   ,   ,   ,   ,   ,   ,   ,   ,   ,   ,   ,   ,   ,   ,   ,   ,   ,   ,   ,   ,   ,   ,   ,   ,   ,   ,   ,   ,   ,   ,   ,   ,   ,   ,   ,   ,  
+////                   -17 -16 -15 -14 -13 -12 -11 -10  -9  -8  -7  -6  -5  -4  -3  -2  -1   0   1   2   3   4   5   6   7   8   9  10  11  12  13  14  15  16  17  18  19  
+//                       ,   ,   ,   ,   ,   ,   ,   ,   ,   ,   ,   ,   ,   ,   ,   ,   ,   ,   ,   ,   ,   ,   ,   ,   ,   ,   ,   ,   ,   ,   ,   ,   ,   ,   ,                
+////                    20  21  22  23  24  25  26  27  28  29  30  31  32  33  34  35  36  37  38  39  40  41  42  43  44  45  46  47  48  49  50  51  52  53  54  55
+//  }
+//
+//  return table[code];
+//  
+//}
 
 void loop() {
   int buttonState[8];
@@ -60,7 +60,7 @@ void loop() {
     Serial.print(buttonState[i], "%d");
   }
   Serial.print("\n");
-  delay(1000);
+  delay(500);
 }
 
 
