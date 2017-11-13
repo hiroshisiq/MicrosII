@@ -31,7 +31,7 @@ pol3 = polyfit(codes,temps,3);
 pol4 = polyfit(codes,temps,4);
 pol5 = polyfit(codes,temps,5);
 
-x = codes%[30:0.5:180];
+x = codes; %[30:0.5:180];
 
 y2 = polyval(pol2, x);
 y3 = polyval(pol3, x);
@@ -54,6 +54,24 @@ dp3 = sqrt(sum((y3-temps).^2)/tam);
 dp4 = sqrt(sum((y4-temps).^2)/tam);
 dp5 = sqrt(sum((y5-temps).^2)/tam);
 
-mi = mean(y2-temps);
+m2 = mean(y2-temps);
+m3 = mean(y3-temps);
+m4 = mean(y4-temps);
+m5 = mean(y5-temps);
 
-% To read: tables(i - (cod0-1))
+%Gaussiano 
+ac2 = norminv([0.025 0.975], 0 , dp2)*dp2;
+ac3 = norminv([0.025 0.975], 0 , dp3)*dp3;
+ac4 = norminv([0.025 0.975], 0 , dp4)*dp4;
+ac5 = norminv([0.025 0.975], 0 , dp5)*dp5;
+
+%Chi quadrado
+chi2 = sum((temps-y2).^2./temps.^2);
+chi3 = sum((temps-y3).^2./temps.^2);
+chi4 = sum((temps-y4).^2./temps.^2);
+chi5 = sum((temps-y5).^2./temps.^2);
+
+%Student
+t = sqrt(tam)*[y2/dp2 y3/dp3 y4/dp4 y5/dp5] - [ temps ];
+
+% To read: tables(value - (cod0-1))
