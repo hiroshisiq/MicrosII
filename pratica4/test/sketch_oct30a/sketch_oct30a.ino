@@ -55,6 +55,7 @@ void loop() {
     }
   }
 
+
   // Print
   for(int i=0; i<8; i++) {
     Serial.print(buttonState[i], "%d");
