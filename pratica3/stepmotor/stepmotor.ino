@@ -549,5 +549,7 @@ void mainMenu() {
 }
 
 void loop() { // run over and over
+   int v;
+   v = 0x0F & 0xB3;
     mainMenu();
 }

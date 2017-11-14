@@ -1,11 +1,10 @@
-
-porta = serial('COM3', 'Baudrate', 9600);
+porta = serial('COM7', 'Baudrate', 9600);
 if (isvalid(porta)==0)
     exit;
 end
 
 fopen(porta);
-c0unt=1;
+count=1;
 figure; hold on;
 
 while(count<1000)
