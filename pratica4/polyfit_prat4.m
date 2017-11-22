@@ -35,7 +35,6 @@ pol5 = polyfit(codes,temps,5);
 pol20 = polyfit(codes,temps,20);
 
 x = codes; %[30:0.5:180];
-
 y1 = polyval(pol1, x);
 y2 = polyval(pol2, x);
 y3 = polyval(pol3, x);
@@ -53,7 +52,7 @@ plot(x,y3);
 plot(x,y4);
 plot(x,y5);
 plot(x,y20)
-legend('Dados experimentais','Ordem 2','Ordem 3','Ordem 4','Ordem 5', 'Ordem 20','location','best');
+legend('Dados experimentais','Ordem 1','Ordem 2','Ordem 3','Ordem 4','Ordem 5', 'Ordem 20','location','best');
 ylim([-20 60]);
 
 m1 = mean(y1- temps);
@@ -62,7 +61,7 @@ m3 = mean(y3- temps);
 m4 = mean(y4- temps);
 m5 = mean(y5- temps);
 
-dp1 = sqrt(sum((y2-temps).^2)/tam);
+dp1 = sqrt(sum((y1-temps).^2)/tam);
 dp2 = sqrt(sum((y2-temps).^2)/tam);
 dp3 = sqrt(sum((y3-temps).^2)/tam);
 dp4 = sqrt(sum((y4-temps).^2)/tam);
