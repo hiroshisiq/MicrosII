@@ -1,4 +1,4 @@
-
+%% Serial opening
 porta = serial('COM3', 'Baudrate', 9600);
 if (isvalid(porta)==0)
     
@@ -8,6 +8,8 @@ if (isvalid(porta)==0)
 end
 
 fopen(porta);
+
+%% Graph pre setting
 count=1;
 %graph = plot(0,0,'r*') 
 axis([0 20 0 200])
@@ -15,10 +17,17 @@ g=10;
 hold on;
 temp=33;
 tableData = [33 33];
+
+%     btn = uicontrol('Style', 'pushbutton', 'String', 'Clear',...
+%         'Position', [20 20 50 20],...
+%         'Callback', @gridbutton);  
+
+%% Plotting
+
 while(ishandle(1))%graph))
     temp0=temp;
     aux=clock;
-    temp = fscanf(porta,'%c')
+    temp = fscanf(porta,'%c');
     temp = temp(1:8);
     temp = bin2dec(temp(1:8))-32;
     
@@ -31,7 +40,8 @@ while(ishandle(1))%graph))
         if(temp0 > 0 && temp0< 141 && temp > 0 && temp< 141)
             tableData = [temps(temp0) temps(temp)];
         end
-        
+%%Polynoms plotting
+    %% Order 2
         y=polyval(pol2,[temp0 temp]);
         subplot(4,2,3);
         plot([count-1 count]*0.2,y,'b-')
@@ -43,7 +53,7 @@ while(ishandle(1))%graph))
         axis([count*0.2-10 count*0.2 -2 2])
         title('Erro para ordem 2')
         hold on
-        
+    %% Order 3        
         y=polyval(pol3,[temp0 temp]);
         subplot(4,2,5);
         plot([count-1 count]*0.2,y,'b-')
@@ -55,7 +65,7 @@ while(ishandle(1))%graph))
         axis([count*0.2-10 count*0.2 -2 2])
         title('Erro para ordem 3')
         hold on
-        
+    %% Order 4 
         y=polyval(pol4,[temp0 temp]);
         subplot(4,2,7);
         plot([count-1 count]*0.2,y,'b-')
@@ -67,7 +77,7 @@ while(ishandle(1))%graph))
         axis([count*0.2-10 count*0.2 -2 2])
         title('Erro para ordem 4')
         hold on
-        
+    %% Table lookup 
         y=tableData;
         subplot(4,2,1);
         if(temp0 >0 && temp >0 && temp0 <141 && temp < 141)
@@ -82,8 +92,7 @@ while(ishandle(1))%graph))
     pause(.01)
 end
 
-
-
+%% Serial closing
 fclose(porta);
 delete(porta);
 clear porta;
