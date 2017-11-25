@@ -13,10 +13,10 @@ fopen(porta);
 %graph = plot(0,0,'r*') 
 graph = figure;
 graph.Position = [100 100 800 600];
-axis([0 20 0 200])
-g=10;
+axis([0 20 0 200]);
 hold on;
 temp=33;
+temp0=33;
 tableData = [33 33];
 b=[0 0 0 0 0];
 xm = 10;
@@ -47,13 +47,6 @@ ym =10;
         'Min',1,'Max',80,'Value',25,...
         'Position', [a(3:4)-[tamsld(1) 2*tamy+tamsld(2)] tamsld]        ); 
 
-%      txty = uicontrol('Style','text',...
-%         'Position',[a(3:4)-[tamsld(1) 3*tamy] tamsld],...
-%         'String','Limites eixo y');
-%      txtx = uicontrol('Style','text',...
-%         'Position',[a(3:4)-[tamsld(1) 3*tamy+tamsld(2)] tamsld],...
-%         'String','Limites eixo x');
-
 graphNumber = 1;
 
 %% Plotting
@@ -68,7 +61,7 @@ while(ishandle(1))%graph))
     temp = bin2dec(temp(1:8))-32;
     
 
-    if(temp > 1 && temp< 140)
+    if(temp0 > 1 && temp0 < 141 && temp > 1 && temp< 141)
         tableData = [temps(temp0) temps(temp)];
     end
 %%Polynoms plotting
@@ -78,7 +71,7 @@ while(ishandle(1))%graph))
  
     while(i<=5)
         
-        tic
+       
         if(b(i))
             y=polyval(pol(i,:),[temp0 temp]);
             subplot(graphNumber+1,2,n+1);
@@ -93,7 +86,7 @@ while(ishandle(1))%graph))
             hold on;grid on;
             n=n+2;
         end
-       [i,toc]
+       
         i=i+1;
         
     end    
@@ -103,7 +96,7 @@ while(ishandle(1))%graph))
         y=tableData;
         subplot(graphNumber+1,2,1);
         
-        if(temp >0 && temp < 141)
+        if(temp0 > 1 && temp0 < 141 && temp > 1 && temp< 141)
             plot([count-1 count]*0.2, y,'b-' )
         end
         
@@ -111,10 +104,10 @@ while(ishandle(1))%graph))
         title('Valor real')
         hold on;grid on;
 %% Graph pos settings
-    count = count+1
+    count = count+1;
     
     if(~isvalid(order1))
-        %% End if graph is closed
+        %% End if graph is closed 
         fclose(porta);
         delete(porta);
         clear porta;
