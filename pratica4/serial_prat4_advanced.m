@@ -8,11 +8,11 @@ if (isvalid(porta)==0)
 end
 
 fopen(porta);
+
+%% Graph pre setting
+%graph = plot(0,0,'r*') 
 graph = figure;
 graph.Position = [100 100 800 600];
-%% Graph pre setting
-count=1;
-%graph = plot(0,0,'r*') 
 axis([0 20 0 200])
 g=10;
 hold on;
@@ -57,7 +57,8 @@ ym =10;
 graphNumber = 1;
 
 %% Plotting
-
+    count =1;
+    graphNumber = 1;
     pol=[zeros(1,4) pol1;zeros(1,3) pol2; zeros(1,2) pol3; zeros(1,1) pol4; pol5 ];
 
 while(ishandle(1))%graph))
@@ -71,7 +72,7 @@ while(ishandle(1))%graph))
         tableData = [temps(temp0) temps(temp)];
     end
 %%Polynoms plotting
-    %% Order 2
+     
     n=2;
     i=1;
  
@@ -109,10 +110,11 @@ while(ishandle(1))%graph))
         axis([count*0.2-xm count*0.2 y(2)-ym y(2)+ym])
         title('Valor real')
         hold on;grid on;
-%% Graph pre settings
+%% Graph pos settings
     count = count+1
     
     if(~isvalid(order1))
+        %% End if graph is closed
         fclose(porta);
         delete(porta);
         clear porta;
