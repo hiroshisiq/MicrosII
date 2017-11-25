@@ -8,9 +8,14 @@
 class Worker : public QObject {
     Q_OBJECT
 private:
+    // Internal
     Serial* _serial;
     MainWindow* _main;
     Observer* _b;
+
+    // Parse
+    QByteArray getInfoToSend();
+    void handleReceivedInfo();
 
 public:
     void setSerial(Serial* serial) { _serial = serial; }

@@ -30,7 +30,8 @@ TestBox::TestBox(QGroupBox *parent) : QGroupBox(parent) {
     this->setLayout(layout);
 
     // Connect button signal to appropriate slot
-    connect(_left,         SIGNAL (toggled()), this, SLOT (handleRadioB()) );
+    connect(_left,         SIGNAL (clicked()), this, SLOT (handleRadioB()) );
+    connect(_right,        SIGNAL (clicked()), this, SLOT (handleRadioB()) );
     connect(_startButton,  SIGNAL (clicked()), this, SLOT (handleStartB()) );
     connect(_pistonButton, SIGNAL (clicked()), this, SLOT (handlePistonB()));
 }

@@ -13,6 +13,7 @@ public:
     ~Serial();
 
     void readPort();
+    void readPort(QByteArray* readData);
     void writePort(const QByteArray &writeData);
 
 private:

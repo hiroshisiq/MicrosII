@@ -15,15 +15,20 @@ OptionsBox::OptionsBox(QGroupBox *parent) : QGroupBox(parent) {
     this->setLayout(layout);
 
     // Connect button signal to appropriate slot
-    connect(_rejectMetalCB,    SIGNAL (stateChanged()), this, SLOT (handleMCB()) );
-    connect(_rejectNonMetalCB, SIGNAL (stateChanged()), this, SLOT (handleNMCB()));
+    connect(_rejectMetalCB,    SIGNAL (clicked()), this, SLOT (handleMCB()) );
+    connect(_rejectNonMetalCB, SIGNAL (clicked()), this, SLOT (handleNMCB()));
 }
 
 void OptionsBox::handleMCB() {
+
+    Observer::setCapSensor(true);
+
     if(_rejectMetalCB->isChecked()) {
         Observer::setRejectMetal(true);
+        Observer::setCapSensor(false);
     } else {
         Observer::setRejectMetal(false);
+        Observer::setCapSensor(true);
     }
 }
 

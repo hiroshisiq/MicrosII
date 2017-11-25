@@ -33,6 +33,12 @@ void Serial::readPort() {
     coutput << readData;
 }
 
+void Serial::readPort(QByteArray* readData) {
+    while (_serialPort.waitForReadyRead(75)) {
+        readData->append(_serialPort.readAll());
+    }
+}
+
 void Serial::writePort(const QByteArray &writeData) {
     _serialPort.write(writeData);
 }
