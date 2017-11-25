@@ -15,7 +15,7 @@ void setup() {
 }
 
 int bin2dec(int * binNumber){
-
+  // Convert binary number to decimal
   int i,dec=0;
 
   for(i=0; i<8; i++) {
@@ -82,6 +82,8 @@ void loop() {
   
 
   // Print
+  Serial.println("Código binário: ");
+
   for(int i=0; i<8; i++) {
     Serial.print(buttonState[i], "%d");
   }
@@ -95,9 +97,9 @@ void loop() {
   Serial.println(tempPol(n,5),"5: %f");
  
   if(n>32 && n<173){
-    Serial.print(tempLookUp(n),"Tabela: %f"); 
+    Serial.println(tempLookUp(n),"Tabela: %f"); 
   }else{
-    Serial.print("Tabela: Valor fora da tabela");
+    Serial.println("Tabela: Valor fora da tabela");
   }
   
   delay(500);

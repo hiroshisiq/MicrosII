@@ -1,3 +1,4 @@
+%% Data get and pre settings
 data = a;
 aux = num2str(data(:,4));
 data(:,4) = bin2dec(aux);
@@ -9,6 +10,7 @@ tam  = size(temps);tam=tam(1);
 cod0 = codes(1);
 codf = codes(tam(1));
 
+%% Lookup table linear approximations
 for i=1:size(codes)
     
     if(i > 1)
@@ -27,6 +29,8 @@ for i=1:size(codes)
 end
 codes = [0:1:139];
 temps = table;
+
+%% Polyfit
 pol1 = polyfit(codes,temps,1);
 pol2 = polyfit(codes,temps,2);
 pol3 = polyfit(codes,temps,3);
@@ -44,6 +48,7 @@ y20 = polyval(pol20, x);
 
 figure; hold on;
 
+%%Plotting
 plot(codes,temps,'r*');
 
 plot(x,y1);
