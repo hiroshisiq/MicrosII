@@ -108,7 +108,7 @@ void loop() {
   Serial.print(tempPol(n,5),"5: %f, ");Serial.print(time1,"in %f us ");Serial.println(mean5=(mean5*(count-1)+float(time1))/count," (%f us mean ) ");
  
   if(n>32 && n<173){
-    Serial.print(tempLookUp(n),"Table: %f, "); Serial.print(time1,"in %f us ");Serial.println(meant=(meant*(count-1)+float(time1))/count," (%f us mean ) ");
+    Serial.print(tempLookUp(n),"Table: %f, "); Serial.print(time1,"in %f us ");Serial.println(meant=(meant*(count-1)+float(time1))/count," (%f us mean ) ");                          
   }else{
     Serial.println("Table: Out of bounds");
   }
