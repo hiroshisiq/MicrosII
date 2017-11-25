@@ -8,14 +8,17 @@
 #include <QRadioButton>
 #include <QButtonGroup>
 
+#include <control/observer.h>
+
 class TestBox : public QGroupBox {
     Q_OBJECT
 public:
     explicit TestBox(QGroupBox *parent = nullptr);
 
-signals:
-
 public slots:
+    void handleRadioB();
+    void handleStartB();
+    void handlePistonB();
 
 private:
     // Radio buttons
@@ -26,8 +29,6 @@ private:
     // Push Buttons
     QPushButton* _startButton;
     QPushButton* _pistonButton;
-
-
 };
 
 #endif // TESTBOX_H

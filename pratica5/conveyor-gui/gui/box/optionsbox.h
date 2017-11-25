@@ -5,6 +5,8 @@
 #include <QCheckBox>
 #include <QBoxLayout>
 
+#include <control/observer.h>
+
 class OptionsBox : public QGroupBox {
     Q_OBJECT
 public:
@@ -13,6 +15,8 @@ public:
 signals:
 
 public slots:
+   void handleMCB();
+   void handleNMCB();
 
 private:
     QCheckBox *_rejectMetalCB;

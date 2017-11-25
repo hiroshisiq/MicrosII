@@ -12,6 +12,8 @@ class TestTab : public QWidget {
     Q_OBJECT
 public:
     explicit TestTab(QWidget *parent = nullptr);
+    void updateInfo();
+    void disableTab(bool disable);
 
 signals:
 
@@ -19,7 +21,7 @@ public slots:
 
 private:
     QGroupBox* _testBox;
-    QGroupBox* _infoBox;
+    InfoBox* _infoBox;
 };
 
 #endif // TESTTAB_H

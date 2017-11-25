@@ -9,18 +9,22 @@
 #include <gui/box/optionsbox.h>
 #include <gui/box/infobox.h>
 
+#include<control/observer.h>
+
 class ConfigurationTab : public QWidget{
     Q_OBJECT
 public:
     explicit ConfigurationTab();
+    void updateInfo();
+    void disableTab(bool disable);
 
 private slots:
-   void handleButton0();
+   void handleStartButton();
 
 private:
    QPushButton* _button;
    QGroupBox* _optionsBox;
-   QGroupBox* _infoBox;
+   InfoBox* _infoBox;
 
    QByteArray toByteArray(QString text);
 };

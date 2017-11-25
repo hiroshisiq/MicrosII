@@ -17,3 +17,10 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent) {
 }
 
 MainWindow::~MainWindow() {}
+
+void MainWindow::updateInfo() {
+    _conf->updateInfo();
+    _test->updateInfo();
+    _test->disableTab(Observer::getNormalStart());
+    _conf->disableTab(Observer::getTestStart() || Observer::getAdvancePiston());
+}

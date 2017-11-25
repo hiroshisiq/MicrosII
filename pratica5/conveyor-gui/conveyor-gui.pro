@@ -32,6 +32,7 @@ SOURCES += \
     gui/box/optionsbox.cpp \
     gui/box/testbox.cpp \
     gui/tabs/testtab.cpp \
+    control/worker.cpp \
     control/controller.cpp \
     control/observer.cpp
 
@@ -43,5 +44,6 @@ HEADERS += \
     gui/box/optionsbox.h \
     gui/box/testbox.h \
     gui/tabs/testtab.h \
-    control/controller.h \
-    control/observer.h
+    control/observer.h \
+    control/worker.h \
+    control/controller.h

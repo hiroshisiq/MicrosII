@@ -13,3 +13,11 @@ TestTab::TestTab(QWidget *parent) : QWidget(parent) {
     // Set the layout with all buttons to this widget
     this->setLayout(layout);
 }
+
+void TestTab::updateInfo() {
+    _infoBox->updateInfo();
+}
+
+void TestTab::disableTab(bool disable) {
+    this->setDisabled(disable);
+}

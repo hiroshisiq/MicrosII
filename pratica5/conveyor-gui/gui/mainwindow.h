@@ -6,9 +6,13 @@
 #include <QPushButton>
 #include <QLabel>
 #include <QVBoxLayout>
+#include <QGroupBox>
 
 #include <gui/tabs/configurationtab.h>
 #include <gui/tabs/testtab.h>
+#include <gui/box/infobox.h>
+
+#include <control/observer.h>
 
 class MainWindow : public QMainWindow {
     Q_OBJECT
@@ -16,11 +20,13 @@ class MainWindow : public QMainWindow {
 public:
     MainWindow(QWidget *parent = 0);
     ~MainWindow();
+    void updateInfo();
 
 private:
     QTabWidget* _tabWidget;
-    QWidget* _conf;
-    QWidget* _test;
+    ConfigurationTab* _conf;
+    TestTab* _test;
+    QGroupBox* _info;
 };
 
 #endif // MAINWINDOW_H

@@ -17,10 +17,26 @@ ConfigurationTab::ConfigurationTab() {
     this->setLayout(layout);
 
     // Connect button signal to appropriate slot
-    connect(_button, SIGNAL (clicked()), this, SLOT (handleButton0()));
+    connect(_button, SIGNAL (clicked()), this, SLOT (handleStartButton()));
 }
 
-void ConfigurationTab::handleButton0() {
+void ConfigurationTab::handleStartButton() {
+    if(Observer::getNormalStart() == false) {
+        _button->setText(tr("Stop"));
+    } else {
+        _button->setText(tr("Start"));
+    }
+
+    // Inverte normal start state
+    Observer::setNormalStart(!Observer::getNormalStart());
+}
+
+void ConfigurationTab::updateInfo() {
+    _infoBox->updateInfo();
+}
+
+void ConfigurationTab::disableTab(bool disable) {
+    this->setDisabled(disable);
 }
 
 QByteArray ConfigurationTab::toByteArray(QString text) {

@@ -1,11 +1,26 @@
-#ifndef CONTROLER_H
-#define CONTROLER_H
+#ifndef CONTROLLER_H
+#define CONTROLLER_H
 
+#include <QObject>
+#include <QThread>
 
-class Controler
-{
+#include <control/worker.h>
+#include <serial/serial.h>
+#include <gui/mainwindow.h>
+
+class Controller : public QObject {
+    Q_OBJECT
+    QThread workerThread;
+
 public:
-    Controler();
+    Controller(Serial* serial, MainWindow* main, Observer* b);
+    ~Controller();
+
+public slots:
+    void handleResults();
+
+signals:
+    void operate();
 };
 
-#endif // CONTROLER_H
+#endif // CONTROLLER_H
