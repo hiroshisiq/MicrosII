@@ -1,5 +1,5 @@
 %% Serial opening
-porta = serial('COM3', 'Baudrate', 9600);
+porta = serial('COM8', 'Baudrate', 9600);
 if (isvalid(porta)==0)
     
     fclose(porta);
@@ -77,12 +77,12 @@ while(ishandle(1))%graph))
             subplot(graphNumber+1,2,n+1);
             plot([count-1 count]*0.2,y,'b-')
             axis([count*0.2-xm count*0.2 y(2)-ym y(2)+ym])
-            title(['Polinômio de ordem ', num2str(i)])
+            title(['Polinômio de ordem ', int2str(i)])
             hold on; grid on;
             subplot(graphNumber+1,2,n+2);
             plot([count-1 count]*0.2,tableData - y,'b-')
             axis([count*0.2-xm count*0.2 -3 3])
-            title(['Erro de ordem ', num2str(i)])
+            title(['Erro de ordem ', int2str(i)])
             hold on;grid on;
             n=n+2;
         end
@@ -94,7 +94,11 @@ while(ishandle(1))%graph))
 
     %% Table lookup 
         y=tableData;
-        subplot(graphNumber+1,2,1);
+        if(b == [0 0 0 0 0])
+            subplot(1,1,1);
+        else
+            subplot(graphNumber+1,2,1);
+        end
         
         if(temp0 > 1 && temp0 < 141 && temp > 1 && temp< 141)
             plot([count-1 count]*0.2, y,'b-' )
