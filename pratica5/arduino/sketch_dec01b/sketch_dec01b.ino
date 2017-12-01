@@ -1,8 +1,8 @@
 #include <SoftwareSerial.h>
 
 // Time [TODO] Ajustar tempo
-unsigned long REJECT_M_TIME = 4000;
-unsigned long REJECT_N_TIME = 3600;
+unsigned long REJECT_M_TIME = 4400;
+unsigned long REJECT_N_TIME = 3300;
 unsigned long WAIT_M_TIME = 6000;
 unsigned long WAIT_N_TIME = 6000;
 unsigned long ACTING_TIME = 100;
@@ -21,7 +21,7 @@ volatile bool cap   = false;
 bool normalStart    = false;
 bool testStart      = false;
 bool rejectMetal    = true;
-bool rejectNonMetal = false;
+bool rejectNonMetal = true;
 bool left           = false;
 bool piston         = false;
 
@@ -36,8 +36,8 @@ unsigned long nsTime;
 bool nsTimerStarted = false;
 
 // Control time list
-unsigned long time_m[10]; int count_m = 0;
-unsigned long time_n[10]; int count_n = 0;
+unsigned long time_m[10]; volatile int count_m = 0;
+unsigned long time_n[10]; volatile int count_n = 0;
 
 void setup() {
   // Open serial communications and wait for port to open:
@@ -128,7 +128,7 @@ void comunicationGUI() {
   if(digitalRead(port[2])) info |= 0x01;
   if(digitalRead(port[3])) info |= 0x02;
   if(digitalRead(port[4])) info |= 0x04;
-  Serial.print(info);
+  //Serial.print(info);
 }
 
 void comunication() {
@@ -159,15 +159,15 @@ void comunication() {
 
   // Send information about the sensors
   char info[10] = "000000000\0";
-  if(normalStart)          info[0] = "1"; 
-  if(testStart)            info[1] = "1"; 
-  if(rejectMetal)          info[2] = "1"; 
-  if(rejectNonMetal)       info[3] = "1"; 
-  if(left)                 info[4] = "1"; 
-  if(piston)               info[5] = "1"; 
-  if(cap) info[6] = "1"; // cap 
-  if(ind) info[7] = "1"; // ind
-  if(opt) info[8] = "1"; // opt
+  //if(normalStart)          info[0] = "1"; 
+  //if(testStart)            info[1] = "1"; 
+  //if(rejectMetal)          info[2] = "1"; 
+  //if(rejectNonMetal)       info[3] = "1"; 
+  //if(left)                 info[4] = "1"; 
+  //if(piston)               info[5] = "1"; 
+  if(cap) info[0] = "1"; // cap 
+  if(ind) info[1] = "1"; // ind
+  if(opt) info[2] = "1"; // opt
   //Serial.println(info);
 }
 
@@ -206,7 +206,7 @@ void normalStartStateMachine() {
         if(ind) {
           // Low Pass Filter
           if(count_m > 0) {
-            if(millis()-time_m[count_m-1] > 1000) {
+            if(millis()-time_m[count_m-1] > 100) {
               time_m[count_m] = millis();
               count_m++;
             }
@@ -219,8 +219,7 @@ void normalStartStateMachine() {
         
         // Add Non-Metal from Capacitive Sensor
         if(cap) {
-          Serial.println(millis());
-          if(millis() - time_m[count_m-1] > 2000 && millis() - time_m[count_m-1] < 4000) { // [TODO] Ajustar janela
+          if(millis() - time_m[count_m-1] > 1000 && millis() - time_m[count_m-1] < 2000) { // [TODO] Ajustar janela
             // Do not add anything
           } else {
             // Low Pass Filter 
@@ -239,7 +238,11 @@ void normalStartStateMachine() {
 
         // Process metal queue
         if(millis() - time_m[0] >= REJECT_M_TIME && time_m[0] != 4111222333) {
-          Serial.println(millis());
+          Serial.print("1 - - -M: ");
+          Serial.print(count_m);
+          Serial.print(" N: ");
+          Serial.println(count_n);
+        
           if(rejectMetal) {
             state = REJECT;
           }
@@ -248,15 +251,19 @@ void normalStartStateMachine() {
           for(int i=0; i<9; i++) {
             time_m[i] = time_m[i+1];
           }
-          time_m[10] = 4111222333;
+
+          Serial.print("2 - - -M: ");
+          Serial.print(count_m);
+          Serial.print(" N: ");
+          Serial.println(count_n);
           
-          count_m--;
+          time_m[9] = 4111222333;
+
+          count_m = count_m-1;        
         }
         
         // Process non-metal queue
         if(millis() - time_n[0] >= REJECT_N_TIME && time_n[0] != 4111222333) {
-          Serial.println(time_n[0]);
-          
           if(rejectNonMetal) {
             state = REJECT;
           }
@@ -265,13 +272,15 @@ void normalStartStateMachine() {
           for(int i=0; i<9; i++) {
             time_n[i] = time_n[i+1];
           }
-          time_n[10] = 4111222333;
+          time_n[9] = 4111222333;
                     
           count_n--;
+
+          
         }
 
-        nsTimerStarted = false;
-        
+        nsTimerStarted = false;  
+      
       } break;
 
       case REJECT: {
